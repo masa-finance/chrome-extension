@@ -134,3 +134,4 @@ local.env
 scratch.js
 *.csv
 dune_uploads/.DS_Store
+db.json
