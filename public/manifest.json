@@ -1,13 +1,18 @@
 {
-    "name": "Medium Extension",
-    "description": "This extension is made for demonstration purposes",
-    "version": "1.0",
-    "manifest_version": 3,
-    "permissions": [
-       "activeTab",
-       "scripting"
-    ],
-    "background": {
-       "service_worker": "background.js"
-    }
+   "name": "Masa Chrome Extension",
+   "description": "This extension is made for demonstration purposes",
+   "version": "1.0",
+   "manifest_version": 3,
+   "permissions": [
+     "activeTab",
+     "scripting",
+     "webNavigation",
+     "storage"
+   ],
+   "host_permissions": [
+     "<all_urls>"
+   ],
+   "background": {
+     "service_worker": "background.js"
+   }
  }
