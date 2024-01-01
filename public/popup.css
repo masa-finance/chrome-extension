@@ -9,6 +9,7 @@ body {
   
   h1 {
     color: #333;
+    font-size: 1.5em;
   }
   
   .description {
@@ -78,8 +79,21 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    font-weight: bold; /* Emphasize the text */
   }
   
   .permission-toggle span {
     margin-right: 10px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    margin-bottom: 20px; /* Space between logo and the title */
+    padding: 10px 40px; /* 20px padding top and bottom, 40px padding right and left */
+  }
+  
+  #logo {
+    max-width: 100%; /* Ensures the logo is not wider than its container */
+    height: auto; /* Keeps the aspect ratio of the logo */
   }
