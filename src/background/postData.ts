@@ -5,7 +5,7 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
   if (type === 'pageView') {
     const payload: any = {
       type: "pageView",
-      client_id: "13db946a-060e-48df-9cbc-a7ee50e72081",
+      client_id: "d3859a90-3d1e-44bf-8925-eb14935442c8",
       event_data: {
         client_app: "Masa Chrome Extension",
         client_name: "Masa",
@@ -21,7 +21,7 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
     // Log the payload for debugging
     console.log('Payload to be sent:', payload);
 
-    fetch('http://localhost:3008/tracking', {
+    fetch('https://api.cookiemonster.masa.finance/tracking', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
