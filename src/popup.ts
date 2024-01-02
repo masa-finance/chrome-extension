@@ -2,17 +2,34 @@
 
 import { createExternalExtensionProvider } from '@metamask/providers';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOMContentLoaded event fired');
     const connectButton = document.getElementById('connectButton');
     const accountAddress = document.getElementById('accountAddress');
+
+    const provider = createExternalExtensionProvider();
+
+    // Get the currently connected accounts
+    const accounts = await provider.request({ method: 'eth_accounts' }) as string[];
+    if (accounts.length > 0 && accountAddress) {
+        accountAddress.textContent = `Connected account: ${accounts[0]}`;
+    }
+
+    // Listen for account changes
+    provider.on('accountsChanged', (accounts: string[]) => {
+        console.log('accounts changed', accounts);
+        if (accounts.length > 0 && accountAddress) {
+            accountAddress.textContent = `Connected account: ${accounts[0]}`;
+        } else {
+            console.error('No accounts available or accountAddress is null.');
+        }
+    });
 
     if (connectButton && accountAddress) {
         console.log('connectButton and accountAddress found');
         connectButton.addEventListener('click', async () => {
             console.log('connectButton clicked');
             try {
-                const provider = createExternalExtensionProvider();
                 console.log('provider created', provider);
                 // Define the expected type for accounts, e.g., string[]
                 const accounts = await provider.request({ method: 'eth_requestAccounts' }) as string[];
