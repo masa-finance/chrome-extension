@@ -38,3 +38,11 @@ window.addEventListener('popstate', () => {
 window.addEventListener('hashchange', () => {
   chrome.runtime.sendMessage({ type: 'urlChange', url: location.href });
 });
+
+chrome.runtime.sendMessage({ message: 'connect_metamask' }, (response) => {
+  if (response.status === 'success') {
+    console.log('Connected account:', response.account);
+  } else {
+    console.error('Error connecting to MetaMask:', response.error);
+  }
+});

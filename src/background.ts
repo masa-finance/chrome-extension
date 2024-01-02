@@ -1,5 +1,30 @@
 // background.ts
+
+import MetaMaskSDK from '@metamask/sdk';
+
 console.log('Background script loaded.');
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.message === 'connect_metamask') {
+    const MMSDK = new MetaMaskSDK();
+    const ethereum = MMSDK.getProvider();
+
+    ethereum.request({ method: 'eth_requestAccounts' })
+      .then((accounts: unknown) => { // Change the type to unknown
+        // Assert that accounts is an array of strings or undefined
+        if (Array.isArray(accounts) && accounts.length > 0) {
+          sendResponse({ status: 'success', account: accounts[0] });
+        } else {
+          // Handle the case where accounts is null, undefined, or empty
+          sendResponse({ status: 'error', error: 'No accounts returned from MetaMask.' });
+        }
+      })
+      .catch((error: Error) => {
+        sendResponse({ status: 'error', error: error.message });
+      });
+  }
+  return true; // Indicates that you wish to send a response asynchronously
+});
 
 // Function to handle sending page data
 function sendPageData(url: string): void {
