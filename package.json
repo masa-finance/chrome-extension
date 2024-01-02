@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@metamask/providers": "^14.0.2",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10",
     "web-ext": "^7.9.0"
   }
 }

@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -14,6 +15,10 @@ module.exports = {
    },
    resolve: {
       extensions: [".ts", ".js"],
+      fallback: {
+          "buffer": require.resolve("buffer/"),
+          "process": require.resolve("process/browser")
+      }
    },
    module: {
       rules: [
@@ -28,5 +33,9 @@ module.exports = {
       new CopyPlugin({
          patterns: [{from: ".", to: ".", context: "public"}]
       }),
+      new webpack.ProvidePlugin({
+          process: 'process/browser',
+          Buffer: ['buffer', 'Buffer'],
+      })
    ],
 };
