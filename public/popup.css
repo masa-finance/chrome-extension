@@ -78,6 +78,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
     margin-bottom: 10px;
     font-weight: bold; /* Emphasize the text */
   }
@@ -88,12 +89,36 @@ body {
 
   .logo-container {
     display: flex;
-    justify-content: center; /* Center logo horizontally */
+    justify-content: flex-start; /* Aligns content to the left */
+    align-items: center; /* Centers items vertically if needed */
     margin-bottom: 20px; /* Space between logo and the title */
-    padding: 10px 40px; /* 20px padding top and bottom, 40px padding right and left */
+    padding-left: 10px; /* Aligns with the body padding */
   }
   
   #logo {
-    max-width: 100%; /* Ensures the logo is not wider than its container */
+    max-width: 60%; /* Ensures the logo is not wider than its container */
     height: auto; /* Keeps the aspect ratio of the logo */
+  }
+
+  #connectButton {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  #accountAddress {
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for addresses */
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px; /* Rounded corners */
+    word-wrap: break-word; /* Ensures the address doesn't overflow */
   }
