@@ -1,8 +1,13 @@
 {
    "name": "Masa Chrome Extension",
-   "description": "This extension is made for demonstration purposes",
+   "description": "Empowering users to monetize their browsing data and participate in quests and campaigns on the Masa zk-Data Network.",
    "version": "1.0",
    "manifest_version": 3,
+   "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
    "permissions": [
      "activeTab",
      "scripting",
@@ -24,5 +29,11 @@
     ],
     "action": {
       "default_popup": "popup.html"
-    }
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["metamask.js"],
+        "matches": ["<all_urls>"]
+      }
+    ]
  }
