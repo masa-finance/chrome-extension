@@ -1,29 +1,27 @@
 // src/popup.ts
 
-// Function to update the permission flag in localStorage and chrome.storage.local
-function updatePermission(granted: boolean): void {
-    if (granted) {
-      localStorage.setItem('extension_permission', 'granted');
-      chrome.storage.local.set({ trackingEnabled: true });
-      console.log('Permission has been granted and tracking is enabled');
+import { createExternalExtensionProvider } from '@metamask/providers';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const connectButton = document.getElementById('connectButton');
+    const accountAddress = document.getElementById('accountAddress');
+
+    if (connectButton && accountAddress) {
+        connectButton.addEventListener('click', async () => {
+            try {
+                const provider = createExternalExtensionProvider();
+                // Define the expected type for accounts, e.g., string[]
+                const accounts = await provider.request({ method: 'eth_requestAccounts' }) as string[];
+                if (accounts && accounts.length > 0) {
+                    accountAddress.textContent = `Connected account: ${accounts[0]}`;
+                } else {
+                    console.error('No accounts returned from MetaMask.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
     } else {
-      localStorage.removeItem('extension_permission');
-      chrome.storage.local.set({ trackingEnabled: false });
-      console.log('Permission has been revoked and tracking is disabled');
+        console.error('Could not find the connect button or account address element.');
     }
-  }
-  
-  // Event listeners for DOM content loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    const togglePermission = document.getElementById('toggle-permission') as HTMLInputElement;
-  
-    // Initialize the toggle state based on stored permission
-    chrome.storage.local.get(['trackingEnabled'], (result) => {
-      togglePermission.checked = result.trackingEnabled || false;
-    });
-  
-    // Event listener for the toggle switch
-    togglePermission.addEventListener('change', () => {
-      updatePermission(togglePermission.checked);
-    });
-  });
+});
