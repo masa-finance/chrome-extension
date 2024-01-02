@@ -17,6 +17,10 @@ export function connectToMetaMask() {
                 connectButton.classList.add('connected'); // Add a class for styling
                 connectButton.disabled = true; // Disable the button after successful connection
             }
+            // Store the connected account address in chrome.storage.local
+            chrome.storage.local.set({ userAddress: address }, () => {
+                console.log('User address saved to storage.');
+            });
         } else {
             console.error('accountAddress element not found');
         }
