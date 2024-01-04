@@ -14,9 +14,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, "../dist"),
     filename: "[name].js",
+    clean: true,
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
     fallback: {
       buffer: require.resolve("buffer/"),
       process: require.resolve("process/browser"),
