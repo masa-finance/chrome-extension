@@ -1,9 +1,45 @@
 /* public/dashboard.css */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
     padding: 20px;
+    background-color: #f4f4f4;
 }
+
+/* Create a header area that uses flexbox to align items */
+.header {
+    display: flex;
+    justify-content: space-between; /* Space out the header title and button */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px; /* Add some space below the header */
+}
+
 h1 {
     color: #333;
+    font-size: 24px;
+    margin: 0; /* Remove default margin */
 }
-/* Add more styles as needed */
+
+#walletButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#walletButton:hover {
+    background-color: #005f73;
+}
+
+#walletButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.connected {
+    background-color: #4CAF50;
+}
