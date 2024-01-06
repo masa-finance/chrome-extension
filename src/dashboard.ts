@@ -2,32 +2,42 @@
 import { checkForConnectedAccount, initiateConnection } from './popup/metamask';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Reference the existing button from the HTML instead of creating a new one
     const walletButton = document.getElementById('walletButton') as HTMLButtonElement;
+    const stakeDataButton = document.getElementById('stakeDataButton') as HTMLButtonElement;
 
-    // Function to update the button text based on wallet connection status
     async function updateWalletStatus(): Promise<void> {
-        // Use a dummy accountAddress element for updateUI function
         const accountAddress: HTMLDivElement = document.createElement('div');
-        // Check for a connected account and update the UI accordingly
         await checkForConnectedAccount(walletButton, accountAddress);
-        // If accountAddress has content, it means we have a connected account
         if (accountAddress.textContent) {
             walletButton.textContent = accountAddress.textContent;
         }
     }
 
-    // Call this function to update the wallet status on page load
     await updateWalletStatus();
 
-    // Add event listener for the button to initiate wallet connection
     walletButton.addEventListener('click', async () => {
-        // Use a dummy accountAddress element for initiateConnection function
         const accountAddress: HTMLDivElement = document.createElement('div');
         await initiateConnection(walletButton, accountAddress);
-        // Update the button text after attempting to connect
         await updateWalletStatus();
+    });
+
+    // Add event listener for the staking button to handle staking data
+    stakeDataButton.addEventListener('click', () => {
+        console.log('Staking data to smart contract...');
+        stakeDataToSmartContract();
     });
 
     console.log('Dashboard loaded');
 });
+
+function stakeDataToSmartContract() {
+    console.log('This function should stake data to the smart contract');
+    // Implement the staking functionality here using a library like ethers.js or web3.js
+    // Example (pseudo-code):
+    // const contract = new ethers.Contract(contractAddress, contractABI, signer);
+    // contract.stakeData(...).then((transaction) => {
+    //     console.log('Data staked with transaction:', transaction);
+    // }).catch((error) => {
+    //     console.error('Staking failed:', error);
+    // });
+}

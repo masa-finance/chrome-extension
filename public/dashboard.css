@@ -43,3 +43,23 @@ h1 {
 .connected {
     background-color: #4CAF50;
 }
+
+.staking-container {
+    margin-top: 20px; /* Add space above the staking container */
+    text-align: center; /* Center the staking button */
+}
+
+#stakeDataButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* A green color for the staking button */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#stakeDataButton:hover {
+    background-color: #367B35; /* A darker green on hover */
+}
