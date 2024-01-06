@@ -1,0 +1,50 @@
+/* public/referrals.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: #008CBA;
+    color: white;
+}
+
+.top-right-container {
+    /* Styles for the wallet button container */
+}
+
+#walletButton {
+    /* Styles for the wallet button */
+}
+
+.content {
+    padding: 20px;
+    /* Additional styles for the content area */
+}
+
+/* Add any additional styles specific to the referrals page */

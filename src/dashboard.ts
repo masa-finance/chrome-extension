@@ -1,25 +1,11 @@
 // src/dashboard.ts
-import { checkForConnectedAccount, initiateConnection } from './popup/metamask';
+import { setupWalletButton, setupNavigationLinks } from './header/header';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const walletButton = document.getElementById('walletButton') as HTMLButtonElement;
+    await setupWalletButton('walletButton');
+    setupNavigationLinks();
+
     const stakeDataButton = document.getElementById('stakeDataButton') as HTMLButtonElement;
-
-    async function updateWalletStatus(): Promise<void> {
-        const accountAddress: HTMLDivElement = document.createElement('div');
-        await checkForConnectedAccount(walletButton, accountAddress);
-        if (accountAddress.textContent) {
-            walletButton.textContent = accountAddress.textContent;
-        }
-    }
-
-    await updateWalletStatus();
-
-    walletButton.addEventListener('click', async () => {
-        const accountAddress: HTMLDivElement = document.createElement('div');
-        await initiateConnection(walletButton, accountAddress);
-        await updateWalletStatus();
-    });
 
     // Add event listener for the staking button to handle staking data
     stakeDataButton.addEventListener('click', () => {

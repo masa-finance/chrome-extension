@@ -9,6 +9,7 @@ module.exports = {
       content: path.resolve(__dirname, "..", "src", "content.ts"),
       popup: path.resolve(__dirname, "..", "src", "popup.ts"),
       dashboard: path.resolve(__dirname, "..", "src", "dashboard.ts"),
+      referrals: path.resolve(__dirname, "..", "src", "referrals.ts"),
    },
    output: {
       path: path.join(__dirname, "../dist"),
