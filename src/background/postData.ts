@@ -21,7 +21,7 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
     // Log the payload for debugging
     console.log('Payload to be sent:', payload);
 
-    fetch('https://api.cookiemonster.masa.finance/tracking', {
+    fetch('http://localhost:3008/tracking', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
