@@ -1,6 +1,7 @@
 // src/dashboard.ts
 import { setupWalletButton, setupNavigationLinks } from './header/header';
 import { ethers } from 'ethers'; // Make sure ethers is imported
+import { createExternalExtensionProvider } from '@metamask/providers';
 
 // Define the base URL for the endpoint
 const eventsCountBaseEndpoint = "https://api.cookiemonster.masa.finance/address/events-count/";
@@ -80,9 +81,24 @@ function updateEventCount(eventType: EventTypes, count: string) {
     }
 }
 
+// Function to listen for account changes using MetaMask provider
+function listenForAccountChanges() {
+    const provider = createExternalExtensionProvider();
+    provider.on('accountsChanged', async (accounts: string[]) => {
+        if (accounts.length > 0) {
+            const checksumAddress = ethers.utils.getAddress(accounts[0]);
+            await fetchAndDisplayEventCounts(checksumAddress);
+        } else {
+            console.log('MetaMask is locked or the user has not connected any accounts');
+            initializeEventCounts();
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     await setupWalletButton('walletButton');
     setupNavigationLinks();
+    listenForAccountChanges(); // Call the function to start listening for account changes
 
     // Retrieve the user address from storage in checksum format
     chrome.storage.local.get('userAddress', async (result) => {
