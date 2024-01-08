@@ -1,20 +1,26 @@
 // src/popup/metamask.ts
 
 import { createExternalExtensionProvider } from '@metamask/providers';
+import { ethers } from 'ethers'; // Import ethers
 
 // Function to update UI with account address
 export const updateUI = (address: string, connectButton: HTMLButtonElement | null, accountAddress: HTMLElement | null) => {
+    // Convert the address to checksum address using ethers.js
+    const checksumAddress = ethers.utils.getAddress(address);
+
+    console.log('Received address from MetaMask:', checksumAddress); // Log the checksum address
+
     if (accountAddress) {
-        accountAddress.textContent = `Connected account: ${address}`;
+        accountAddress.textContent = `Connected account: ${checksumAddress}`;
         // Update the button text and style
         if (connectButton) {
             connectButton.textContent = 'MetaMask Connected';
             connectButton.classList.add('connected'); // Add a class for styling
             connectButton.disabled = true; // Disable the button after successful connection
         }
-        // Store the connected account address in chrome.storage.local
-        chrome.storage.local.set({ userAddress: address }, () => {
-            console.log('User address saved to storage.');
+        // Store the connected account address in chrome.storage.local in checksum format
+        chrome.storage.local.set({ userAddress: checksumAddress }, () => {
+            console.log('User address saved to storage:', checksumAddress); // Log the checksum address as it's being stored
         });
     } else {
         console.error('accountAddress element not found');

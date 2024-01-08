@@ -15,13 +15,14 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
 
     // Add user_address to the payload if it's available
     if (userAddress) {
+      console.log('User address before sending:', userAddress); // Log the user address to check its case
       payload.user_address = userAddress;
     }
 
     // Log the payload for debugging
     console.log('Payload to be sent:', payload);
 
-    fetch('http://localhost:3008/tracking', {
+    fetch('https://api.cookiemonster.masa.finance/tracking', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

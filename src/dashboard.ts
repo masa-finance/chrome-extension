@@ -1,8 +1,9 @@
 // src/dashboard.ts
 import { setupWalletButton, setupNavigationLinks } from './header/header';
+import { ethers } from 'ethers'; // Make sure ethers is imported
 
-// Define the endpoint URL
-const eventsCountEndpoint = "http://localhost:3008/address/events-count/0x811fb640cde15a9cf4074f658a438abd02590c6b";
+// Define the base URL for the endpoint
+const eventsCountBaseEndpoint = "https://api.cookiemonster.masa.finance/address/events-count/";
 
 // Define the event types
 type EventTypes =
@@ -24,7 +25,7 @@ interface EventData {
   count: string;
 }
 
-// Function to initialize all event counts to "No data"
+// Function to initialize all event counts to "-"
 function initializeEventCounts() {
     const eventTypes: EventTypes[] = [
         'pageView', 'login', 'mint', 'connectWallet', 'swap', 'bridge',
@@ -32,17 +33,21 @@ function initializeEventCounts() {
     ];
 
     eventTypes.forEach(eventType => {
-        updateEventCount(eventType, "");
+        updateEventCount(eventType, "-");
     });
 }
 
 // Function to fetch and display event counts
-async function fetchAndDisplayEventCounts() {
+async function fetchAndDisplayEventCounts(userAddress: string) {
+    const eventsCountEndpoint = `${eventsCountBaseEndpoint}${userAddress}`;
+    console.log('Fetching event counts from:', eventsCountEndpoint);
     try {
         const response = await fetch(eventsCountEndpoint);
+        console.log('Received response:', response);
         const data = await response.json();
+        console.log('Parsed response data:', data);
         if (data.success && Array.isArray(data.data)) {
-            // Initialize all counts to "No data" before updating with fetched data
+            // Initialize all counts to "-" before updating with fetched data
             initializeEventCounts();
             data.data.forEach((event: EventData) => {
                 const eventType = event.type;
@@ -50,12 +55,12 @@ async function fetchAndDisplayEventCounts() {
                 updateEventCount(eventType, count);
             });
         } else {
-            // If the fetch is not successful, initialize all counts to "No data"
+            // If the fetch is not successful, initialize all counts to "-"
             initializeEventCounts();
         }
     } catch (error) {
         console.error('Failed to fetch event counts:', error);
-        // If there is an error during fetch, initialize all counts to "No data"
+        // If there is an error during fetch, initialize all counts to "-"
         initializeEventCounts();
     }
 }
@@ -68,7 +73,7 @@ function updateEventCount(eventType: EventTypes, count: string) {
         if (parentElement) {
             const countElement = parentElement.querySelector('span');
             if (countElement) {
-                // Set text to "No data" if count is not provided or is an empty string
+                // Set text to "-" if count is not provided or is an empty string
                 countElement.textContent = count || "-";
             }
         }
@@ -79,16 +84,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     await setupWalletButton('walletButton');
     setupNavigationLinks();
 
-    // Initialize all event counts to "No data"
-    initializeEventCounts();
-
-    // Fetch and display event counts immediately
-    await fetchAndDisplayEventCounts();
-
-    // Set up an interval to refresh the event counts every 5 minutes (300000 milliseconds)
-    setInterval(async () => {
-        await fetchAndDisplayEventCounts();
-    }, 300000);
+    // Retrieve the user address from storage in checksum format
+    chrome.storage.local.get('userAddress', async (result) => {
+        if (result.userAddress) {
+            const checksumAddress = ethers.utils.getAddress(result.userAddress);
+            // Initialize all event counts to "-"
+            initializeEventCounts();
+            // Fetch and display event counts immediately using the checksum address
+            await fetchAndDisplayEventCounts(checksumAddress);
+            // Set up an interval to refresh the event counts every 5 minutes (300000 milliseconds)
+            setInterval(async () => {
+                await fetchAndDisplayEventCounts(checksumAddress);
+            }, 300000);
+        } else {
+            console.error('User address not found in storage.');
+        }
+    });
 
     const stakeDataButton = document.getElementById('stakeDataButton') as HTMLButtonElement;
     if (stakeDataButton) {
