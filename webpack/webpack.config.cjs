@@ -1,6 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const sass = require("sass");
 
 module.exports = {
   mode: "production",
@@ -40,6 +43,19 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: sass,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -50,5 +66,13 @@ module.exports = {
       process: "process/browser",
       Buffer: ["buffer", "Buffer"],
     }),
+    new MiniCssExtractPlugin(),
+
   ],
+  optimization: {
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
 };

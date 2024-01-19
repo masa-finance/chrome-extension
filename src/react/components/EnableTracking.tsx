@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { updatePermission } from '../helpers/permissionUpdate'
+
 export const EnableTracking = () => {
 
     const [checked, setChecked] = useState()
@@ -20,7 +21,7 @@ export const EnableTracking = () => {
     }
     
     return <div className="permission-toggle">
-        <span>Enable Tracking:</span>
+        <span>Enable Tasdasdasracking:</span>
         <label className="toggle-switch">
             <input type="checkbox" checked={checked} onChange={handleChange} />
             <span className="slider round"></span>
