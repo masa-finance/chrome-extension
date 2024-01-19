@@ -7,6 +7,7 @@
   --spacing-medium: 12px;
   --spacing-large: 18px;
   --spacing-xlarge: 32px;
+  --spacing-2xl: 48px;
 
   // Fonts
   --font-primary: var(--font-inter);
@@ -43,6 +44,15 @@
   --gradient-secondary: linear-gradient(to right, #2ecc71, #e74c3c);
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
   font-family: var(--font-inter);
   color: var(--color-font-black);
@@ -60,6 +70,7 @@ h6 {
   font-family: var(--font-primary);
   font-weight: 600;
   margin: 0;
+  color: var(--color-font-white);
 }
 
 .smaller-text {

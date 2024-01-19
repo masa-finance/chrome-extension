@@ -1,0 +1,10 @@
+.content {
+    width: 100%;
+    padding: var(--spacing-large) var(--spacing-2xl);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
