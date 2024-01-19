@@ -12,8 +12,8 @@ module.exports = {
     background: path.resolve(__dirname, "..", "src", "background.ts"),
     content: path.resolve(__dirname, "..", "src", "content.ts"),
     popup: path.resolve(__dirname, "..", "src", "popup.ts"),
-    dashboard: path.resolve(__dirname, "..", "src", "dashboard.ts"),
-    react: path.resolve(__dirname, "..", "src", "react", "index.tsx"),
+    react_dashboard: path.resolve(__dirname, "..", "src", "react", "Dashboard.index.tsx"),
+    react_popup: path.resolve(__dirname, "..", "src", "react", "Popup.index.tsx"),
   },
   output: {
     path: path.join(__dirname, "../dist"),

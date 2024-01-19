@@ -40,11 +40,6 @@
   --gradient-secondary: linear-gradient(to right, #2ecc71, #e74c3c);
 }
 
-html {
-  width: 440px; /* max: 1000px */
-  height: 470px; /* max: 750px */
-}
-
 body {
   font-family: var(--font-inter);
   color: var(--color-font-black);

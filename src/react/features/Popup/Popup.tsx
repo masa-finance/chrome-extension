@@ -21,7 +21,7 @@ export const Popup = () => {
         <Column className="popup" style={{ gap: 18 }}>
             <img src="/masalogo.png" alt="logo" className="logo-invert" style={{ width: 120, marginBottom: "$spacing-large" }} />
             <Column>
-                <h2 className={"medium-text"}>Earn rewards with Masa</h2>
+                <h2 className={"medium-text"}>Earn rewards with Masa and blablabl</h2>
                 <p className="small-text">Earn points from browsing and wallet tracking</p>
             </Column>
 
@@ -53,6 +53,8 @@ export const Popup = () => {
                     </Row>
                 </Column>
             </Column>
+
+            <a href="dashboard.html" target="_blank">Open Dashboard</a>
         </Column>
     );
 }
