@@ -8,12 +8,16 @@
       "rootDir": "src",
       "outDir": "dist/js",
       "noEmitOnError": true,
-      "typeRoots": [ "node_modules/@types" ]
+      "typeRoots": [ "node_modules/@types" ],
+      "jsx": "react-jsx",
+      "declaration": true,
+      "emitDeclarationOnly": true,
+      "isolatedModules": true
    },
    "include": [
       "src/**/*.ts"
    ],
    "exclude": [
-      "dist/js"
+      "dist/js", "node_modules"
    ]
 }
