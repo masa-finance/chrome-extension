@@ -1,8 +1,8 @@
 export const Header = () => {
   return (
-    <div className='header'>
+    <header>
       <h1>Dashboard</h1>
-      <button className='btn btn-connect'>Connect wallet</button>
-    </div>
+      <button className='btn-connect'>Connect wallet</button>
+    </header>
   )
 }
