@@ -3,21 +3,34 @@
   --font-inter: "Inter", sans-serif;
 
   // Spacings
-  --spacing-small: 6px;
+  --spacing-2xs: 2px;
+  --spacing-xsmall: 4px;
+  --spacing-small: 8px;
   --spacing-medium: 12px;
-  --spacing-large: 18px;
-  --spacing-xlarge: 32px;
+  --spacing-large: 16px;
+  --spacing-xlarge: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
 
   // Fonts
   --font-primary: var(--font-inter);
   --font-secondary: "Arial", sans-serif;
 
+  // Font Weights
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;    
+
   // Sizes
+  --font-size-xs: 12px;
   --font-size-smaller: 14px;
   --font-size-small: 15px;
   --font-size-medium: 18px;
   --font-size-large: 24px;
-
+  --font-size-xlarge: 32px;
+  --font-size-2xl: 56px;
+  
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 16px;
@@ -26,14 +39,16 @@
   --color-background: #252525;
   --color-card-background: #303030;
   --color-card-light-background: rgba(48, 48, 48, 0.05);
-
+  --color-card-border: #1F1F1F;
+  
   --color-font-white: white;
   --color-font-black: black;
   --color-font-light: rgba(60, 60, 60, 0.8);
+  --color-font-light-gray: #838383;
 
   --color-disabled: #dedede;
 
-  --color-success: #3b7c0f;
+  --color-success: #66C61C;
   --color-error: #b42318;
 
   --color-primary: #e9bf78;
@@ -41,6 +56,15 @@
   // Gradients to-do
   --gradient-primary: linear-gradient(to right, #3498db, #9b59b6);
   --gradient-secondary: linear-gradient(to right, #2ecc71, #e74c3c);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -60,6 +84,7 @@ h6 {
   font-family: var(--font-primary);
   font-weight: 600;
   margin: 0;
+  color: var(--color-font-white);
 }
 
 .smaller-text {
@@ -102,7 +127,7 @@ h6 {
 
 .light-card {
   background: var(--color-card-light-background);
-  padding: var(--spacing-xlarge);
+  padding: var(--spacing-2xl);
 }
 
 .logo-invert {

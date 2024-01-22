@@ -1,5 +1,12 @@
 import React from 'react';
+import { Content } from './Content';
+import { Sidebar } from './Sidebar';
 
 export const Dashboard = () => {
-    return <div>Hey I am the Dashboard</div>
+  return (
+    <div className='dashboard'>
+      <Sidebar />
+      <Content />
+    </div>
+  )
 }
