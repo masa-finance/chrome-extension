@@ -1,3 +1,11 @@
 .popup {
-    
+    .rewards {
+        p {
+            font-size: var(--font-size-small);
+        }
+
+        .reward-points {
+            color: var(--color-success);
+        }
+    }
 }

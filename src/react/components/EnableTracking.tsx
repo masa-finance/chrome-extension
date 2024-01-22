@@ -19,12 +19,9 @@ export const EnableTracking = () => {
         updatePermission(event?.target.checked);
         fetchPermission();
     }
-    
-    return <div className="permission-toggle">
-        <span>Enable Tasdasdasracking:</span>
-        <label className="toggle-switch">
-            <input type="checkbox" checked={checked} onChange={handleChange} />
-            <span className="slider round"></span>
-        </label>
-    </div>
+
+    return <label className="toggle-switch">
+        <input type="checkbox" checked={checked} onChange={handleChange} />
+        <span className="slider round"></span>
+    </label>
 }

@@ -7,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.config.cjs",
-    "watch": "webpack --watch --config webpack/webpack.config.cjs"
+    "watch": "webpack --watch --config webpack/webpack.config.cjs",
+    "lint": "eslint ./src/react/**",
+    "lint-lint": "eslint ./src/react/** --fix"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,8 @@
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
     "html-webpack-plugin": "^5.6.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
@@ -38,6 +42,7 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use": "^17.5.0",
     "sass": "^1.70.0",
     "sass-loader": "^14.0.0",
     "web-ext": "^7.9.0"

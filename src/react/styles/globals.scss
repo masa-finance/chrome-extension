@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   --font-inter: "Inter", sans-serif;
 
   // Spacings
-  --spacing-small: 4px;
-  --spacing-medium: 8px;
-  --spacing-large: 16px;
+  --spacing-small: 6px;
+  --spacing-medium: 12px;
+  --spacing-large: 18px;
   --spacing-xlarge: 32px;
 
   // Fonts
@@ -29,6 +29,9 @@
 
   --color-font-white: white;
   --color-font-black: black;
+  --color-font-light: rgba(60, 60, 60, 0.8);
+
+  --color-disabled: #dedede;
 
   --color-success: #3b7c0f;
   --color-error: #b42318;
@@ -45,7 +48,7 @@ body {
   color: var(--color-font-black);
 }
 p {
-    margin: 0;
+  margin: 0;
 }
 
 h1,
@@ -55,18 +58,17 @@ h4,
 h5,
 h6 {
   font-family: var(--font-primary);
-  font-weight: bold;
+  font-weight: 600;
   margin: 0;
 }
 
 .smaller-text {
-    font-size: var(--font-size-smaller);
+  font-size: var(--font-size-smaller);
 }
 
 .small-text {
   font-size: var(--font-size-small);
 }
-
 
 .medium-text {
   font-size: var(--font-size-medium);
@@ -100,7 +102,7 @@ h6 {
 
 .light-card {
   background: var(--color-card-light-background);
-  padding: var(--spacing-large);
+  padding: var(--spacing-xlarge);
 }
 
 .logo-invert {
