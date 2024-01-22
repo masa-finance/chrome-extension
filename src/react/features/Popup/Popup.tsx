@@ -46,6 +46,7 @@ export const Popup = () => {
                             <Column style={{ gap: spacingSmall }}>
                                 <h2 className='small-text'>Earn while you surf</h2>
                                 <p className='small-text'>Enable browsing data tracking and earn points</p>
+                                <p className='note-text'>Your data will remain private and never be shared without your consent</p>
                             </Column>
                         </Row>
 
