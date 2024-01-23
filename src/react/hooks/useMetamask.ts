@@ -27,7 +27,7 @@ export const checkForConnectedAccount = async () => {
       method: "eth_accounts",
     })) as string[];
     if (accounts && accounts.length > 0) {
-      console.log("Accounts", accounts[0]);
+      console.log("Accounts hook", accounts[0]);
       return accounts[0];
     } else {
       console.log("No accounts found. User needs to connect.");
@@ -47,6 +47,11 @@ export const useMetamask = () => {
 
   useEffect(() => {
     fetchAccount();
+
+    const provider = createExternalExtensionProvider();
+    provider.on("accountsChanged", () => {
+      fetchAccount();
+    });
   }, [fetchAccount]);
 
   const handleInitiateConnection = async () => {
