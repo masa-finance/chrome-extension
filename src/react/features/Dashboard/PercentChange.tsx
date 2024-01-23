@@ -6,7 +6,7 @@ export const PercentChange = ({value}: {value:number}) => {
     <div className='percent-change'>
       { value > 0 && <img width={size} height={size} src="icons/arrow-up.svg" />}
       { value < 0 && <img width={size} height={size} src="icons/arrow-down.svg" /> }
-      <span className='smaller-text' style={{color: `var(${style})`}}>{value}</span>
+      <span className='smaller-text' style={{color: `var(${style})`}}>{value}%</span>
     </div>
   )
 }

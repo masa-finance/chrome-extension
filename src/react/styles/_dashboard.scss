@@ -10,19 +10,25 @@
         padding: var(--spacing-large) var(--spacing-3xl);
     }
 
+    .dashboard-header {
+        padding-left: var(--spacing-xlarge);
+        margin-bottom: var(--spacing-4xl);
+    }
+
     header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: var(--spacing-4xl);
     }
 }
 
 .btn-connect {
     background: var(--color-primary);
+    text-align: center;
     font-weight: var(--font-semibold);
     font-size: var(--font-size-smaller);
-    padding: var(--spacing-large) var(--spacing-small);
+    padding-block: var(--spacing-small);
+    padding-inline: var(--spacing-large);
     border-radius: var(--border-radius-large);
     border: none;
 }
@@ -40,9 +46,11 @@
     flex-direction: row;
     align-items: center;
     gap: var(--spacing-2xs);
+    font-weight: var(--font-medium);
 }
 
 .total-points {
+    padding-left: var(--spacing-xlarge);
     margin-bottom: var(--spacing-2xl);
     
     h2 {
@@ -74,20 +82,20 @@
     border-radius: var(--border-radius-large);
     padding: var(--spacing-2xl);
     
-    h2 {
+    .metrics-title {
         font-size: var(--font-size-xlarge);
         color: var(--color-font-white);
         font-weight: var(--font-bold);
         margin-bottom: var(--spacing-medium);
     }
 
-    h3 {
+    .metrics-subtitle {
         font-size: var(--font-size-medium);
         font-weight: var(--font-medium);
         color: var(--color-font-light-gray);
     }
     
-    header {
+    .metrics-header {
         display: flex;
         justify-content: space-between;
         margin-bottom: var(--spacing-3xl);
@@ -96,14 +104,49 @@
 
 .stats-section {
     display: grid;
-    grid-template-columns: 4;
-    gap: var(--spacing-xlarge);
+    grid-template-columns: repeat(4, minmax(248px, 1fr));
+    gap: var(--spacing-xlarge); 
 }
 
-.stats-card {
+.stat-card {
     border-radius: var(--border-radius-medium);
     background: var(--color-card-background);
     color: var(--color-font-light-gray);
+    padding: var(--spacing-xlarge);
+
+    .stat-card-title {
+        color: var(--color-font-light-gray);
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-semibold);
+        margin-bottom: var(--spacing-xsmall);
+    }
+
+    .stat-card-subtitle {
+        color: var(--color-font-light-gray);
+        opacity: .5;
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-large);
+    }
+}
+
+.stat-card-link {
+    flex-grow: 1;
+    color: var(--color-primary);
+    font-size: var(--font-size-small);
+    text-align: right;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.percent-change-pill {
+    background-color: rgba(255,255,255,.1);
+    border-radius: var(--border-radius-xlarge);    
+    padding-block: var(--spacing-xsmall);
+    padding-inline: var(--spacing-medium);
+    display: flex;
 }
 
 .coming-soon > p {
@@ -115,7 +158,59 @@
     color: var(--color-success);
     font-size: var(--font-size-xs);
     border: 1px solid black;
-    padding: var(--spacing-large) var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-large);
     font-weight: var(--font-medium);
+    text-align: center;
     margin-bottom: var(--spacing-small);
+    border-radius: var(--border-radius-xlarge);
+}
+
+.stats {
+    display: flex;
+    gap: var(--spacing-4xl);
+    align-items: flex-end;
+}
+
+.stat {
+    .stat-label {
+        font-weight: var(--font-medium);
+        font-size: var(--font-size-small);
+        color: var(--color-font-light-gray);
+        margin-bottom: var(--spacing-xsmall);
+    }
+    .stat-value {
+        color: var(--color-font-lighter-gray);
+        font-size: var(--font-size-xlarge);
+        font-weight: var(--font-bold);
+    }
+}
+
+.help-icon {
+    position: relative;
+    display: inline-block;
+
+    .tooltip {
+        visibility: hidden;
+        width: 224px;
+        background-color: var(--color-tooltip-background);
+        color: var(--color-font-white);
+        padding: var(--spacing-medium);
+        border-radius: var(--border-radius-medium);
+        position: absolute;
+        z-index: 1;
+
+        &-title {
+            font-weight: var(--font-semibold);
+            font-size: var(--font-size-xs);
+            margin-bottom: var(--spacing-xsmall);
+        }
+
+        &-body {
+            font-size: var(--font-size-xs);
+        }
+    }
+
+    &:hover .tooltip {
+        visibility: visible;
+    }
 }

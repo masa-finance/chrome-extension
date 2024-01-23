@@ -34,23 +34,24 @@
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 16px;
-
+  --border-radius-xlarge: 32px;
+  
   // Colors
   --color-background: #252525;
   --color-card-background: #303030;
   --color-card-light-background: rgba(48, 48, 48, 0.05);
   --color-card-border: #1F1F1F;
-  
+  --color-tooltip-background: #242424;  
   --color-font-white: white;
   --color-font-black: black;
   --color-font-light: rgba(60, 60, 60, 0.8);
   --color-font-light-gray: #838383;
-
+  --color-font-lighter-gray: #D6D6D6;
+  
   --color-disabled: #dedede;
 
   --color-success: #28A745;
   --color-error: #b42318;
-
   --color-primary: #e9bf78;
 
   // Gradients to-do
