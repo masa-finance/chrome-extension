@@ -76,10 +76,11 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       ],
     },
     {
+      isComingSoon: true,
       title: "Referred friends",
       subTitle: "vs last week",
       columnWidth: 2,
-      percentChange: -12,
+      // percentChange: 0,
       link: {
         label: "Invite more friends",
         url: "#",
@@ -87,11 +88,11 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       stats: [
         {
           label: "Invites",
-          value: "67",
+          value: "0",
         },
         {
           label: "Registered",
-          value: "29",
+          value: "0",
         },
       ],
     },

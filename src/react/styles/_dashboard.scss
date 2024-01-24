@@ -131,6 +131,28 @@
     color: var(--color-font-white);
     font-weight: var(--font-bold);
   }
+
+  .skeleton {
+    background: linear-gradient(
+      to right,
+      var(--color-skeleton) 8%,
+      var(--color-font-light) 18%,
+      var(--color-skeleton) 33%
+    );
+    background-size: 800px 104px;
+    color: transparent;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: ease-in-out;
+
+    border-radius: 50px;
+    height: 20px;
+    width: 60px;
+
+    margin-top: var(--spacing-medium);
+  }
 }
 
 .change-line {
@@ -244,6 +266,13 @@
   &:hover {
     text-decoration: underline;
   }
+
+  &.coming-soon {
+    color: rgba(255, 255, 255, 0.2);
+    cursor: none;
+
+    pointer-events: none;
+  }
 }
 
 .percent-change-pill {
@@ -287,6 +316,10 @@
     color: var(--color-font-lighter-gray);
     font-size: var(--font-size-xlarge);
     font-weight: var(--font-bold);
+
+    &.coming-soon {
+      color: var(--color-text-disabled);
+    }
   }
 }
 

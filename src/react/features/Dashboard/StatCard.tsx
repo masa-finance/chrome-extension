@@ -19,7 +19,8 @@ type StatCardProps = {
   percentChange: number,
   stats: Stat[],
   link?: Link,
-  isLoading: boolean
+  isLoading?: boolean,
+  isComingSoon?: boolean
 }
 
 export const StatCard = ({
@@ -29,7 +30,8 @@ export const StatCard = ({
   percentChange,
   stats,
   link,
-  isLoading
+  isLoading,
+  isComingSoon
 }: StatCardProps) => {
   if (isLoading) {
     return (
@@ -59,8 +61,12 @@ export const StatCard = ({
     <div className='stat-card' style={{ gridColumn: `span ${columnWidth}` }}>
       <header>
         <h3 className='stat-card-title'>{title}</h3>
-        {percentChange && percentChange !== 0 && <div className='percent-change-pill'>
+        {!isComingSoon && <>{percentChange && percentChange !== 0 && <div className='percent-change-pill'>
           <PercentChange value={percentChange} />
+        </div>}</>}
+
+        {isComingSoon && <div className='coming-soon-badge'>
+          Coming soon
         </div>}
       </header>
       <h4 className='stat-card-subtitle'>{subTitle}</h4>
@@ -69,11 +75,11 @@ export const StatCard = ({
           return (
             <div className='stat'>
               <h5 className='stat-label'>{statData.label}</h5>
-              <p className='stat-value'>{statData.value}</p>
+              <p className={`stat-value ${isComingSoon ? "coming-soon" : ""}`}>{statData.value}</p>
             </div>
           )
         })}
-        {link && <a className='stat-card-link' target='_blank' href={link.url}>{link.label}</a>}
+        {link && <a className={`stat-card-link ${isComingSoon ? "coming-soon" : ""}`} target='_blank' href={link.url}>{link.label}</a>}
       </section>
     </div>
   )

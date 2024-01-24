@@ -16,6 +16,8 @@ export type Metrics = {
   trade_progress: string | null;
   wallet_count: string | null;
   wallet_progress: string | null;
+  totalCount: string | null;
+  average_progress: string | null;
 };
 
 export const useMetrics = (address?: string) => {

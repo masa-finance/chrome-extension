@@ -5,8 +5,6 @@ import { useDashboardContext } from '../../contexts/DashboardContextProvider';
 export const ActivityMetrics = () => {
   const { metricsData, isLoading } = useDashboardContext()
 
-  console.log({ metricsData, isLoading })
-
   return (
     <section className='activity-metrics'>
       <header className='metrics-header'>
