@@ -1,15 +1,37 @@
 .popup {
-    .rewards {
-        p {
-            font-size: var(--font-size-small);
-        }
-
-        .reward-points {
-            color: var(--color-success);
-        }
+  .rewards {
+    p {
+      font-size: var(--font-size-small);
     }
 
-    .note-text {
-        color: var(--color-font-light-gray);
+    .reward-points {
+      color: var(--color-success);
+
+      &.skeleton {
+        background: linear-gradient(
+          to right,
+          var(--color-font-lighter-gray) 8%,
+          var(--color-font-light) 18%,
+          var(--color-font-lighter-gray) 33%
+        );
+        background-size: 800px 104px;
+        color: transparent;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: shimmer;
+        animation-timing-function: ease-in-out;
+
+        border-radius: 50px;
+        height: 20px;
+        width: 60px;
+
+        margin-top: var(--spacing-xsmall);
+      }
     }
+  }
+
+  .note-text {
+    color: var(--color-font-light-gray);
+  }
 }

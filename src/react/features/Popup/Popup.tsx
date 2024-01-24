@@ -7,8 +7,16 @@ import { EnableTracking } from '../../components/EnableTracking';
 
 import './styles.scss';
 import { MetamaskConnectButton } from './MetamaskConnectButton';
+import { useMetrics } from '../../hooks/useMetrics';
+import { useMetamask } from '../../hooks/useMetamask';
 
 export const Popup = () => {
+
+    const { account, isLoading: isMetamaskLoading } = useMetamask();
+    const { metrics, isLoading } = useMetrics(account);
+
+    const loading = isLoading || isMetamaskLoading;
+
     const spacingSmall = getComputedStyle(document.documentElement)
         .getPropertyValue('--spacing-small');
     const spacingLarge = getComputedStyle(document.documentElement)
@@ -59,7 +67,7 @@ export const Popup = () => {
             <Row style={{ justifyContent: 'space-between' }}>
                 <Column style={{ alignItems: 'flex-end' }} className="rewards">
                     <p>View current rewards</p>
-                    <p className='reward-points'>3,230 points</p>
+                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalCount} points</p>
                 </Column>
 
                 <a href="dashboard.html" target="_blank"><AlternativeButton>Go to dashboard</AlternativeButton></a>
