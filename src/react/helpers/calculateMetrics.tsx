@@ -1,31 +1,29 @@
 import React from 'react';
 import { Metrics } from "../hooks/useMetrics";
 
-export const calculateMetrics = (metrics: Metrics) => {
-  if (!metrics) return null;
-
+export const calculateMetrics = (metrics?: Metrics | null) => {
   const metricsData = [
     {
       title: "Browsing",
       subTitle: "vs last week",
-      percentChange: metrics.page_view_progress,
+      percentChange: metrics?.page_view_progress,
       columnWidth: 1,
       stats: [
         {
           label: "Page views",
-          value: metrics.page_view_count,
+          value: metrics?.page_view_count,
         },
       ],
     },
     {
       title: "Masa",
       subTitle: "All time",
-      percentChange: metrics.login_progress,
+      percentChange: metrics?.login_progress,
       columnWidth: 1,
       stats: [
         {
           label: "Logins",
-          value: metrics.login_count,
+          value: metrics?.login_count,
         },
         {
           label: (
@@ -53,7 +51,7 @@ export const calculateMetrics = (metrics: Metrics) => {
               </div>
             </div>
           ),
-          value: `${metrics.login_consecutive_days} of 7`,
+          value: `${metrics?.login_consecutive_days} of 7`,
         },
       ],
     },
@@ -61,19 +59,19 @@ export const calculateMetrics = (metrics: Metrics) => {
       title: "Wallet activity",
       subTitle: "vs last week",
       columnWidth: 2,
-      percentChange: metrics.wallet_progress,
+      percentChange: metrics?.wallet_progress,
       stats: [
         {
           label: "Swap",
-          value: metrics.swap_count,
+          value: metrics?.swap_count,
         },
         {
           label: "Bridge",
-          value: metrics.bridge_count,
+          value: metrics?.bridge_count,
         },
         {
           label: "Wallet",
-          value: metrics.wallet_count,
+          value: metrics?.wallet_count,
         },
       ],
     },
@@ -105,15 +103,15 @@ export const calculateMetrics = (metrics: Metrics) => {
         label: "Mint another soul",
         url: "https://app.masa.finance/soulnames",
       },
-      percentChange: metrics.mint_progress,
+      percentChange: metrics?.mint_progress,
       stats: [
         {
           label: "Tokens",
-          value: metrics.token_mint_count,
+          value: metrics?.token_mint_count,
         },
         {
           label: "Souls",
-          value: metrics.soul_mint_count,
+          value: metrics?.soul_mint_count,
         },
       ],
     },
@@ -121,11 +119,11 @@ export const calculateMetrics = (metrics: Metrics) => {
       title: "Dex trade",
       subTitle: "vs last week",
       columnWidth: 1,
-      percentChange: metrics.trade_progress,
+      percentChange: metrics?.trade_progress,
       stats: [
         {
           label: "Trades",
-          value: metrics.trade_count,
+          value: metrics?.trade_count,
         },
       ],
     },

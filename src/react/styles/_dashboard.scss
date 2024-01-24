@@ -47,7 +47,7 @@
 
   align-items: center;
 
-  padding: var(--spacing-large) var(--spacing-2xl);   
+  padding: var(--spacing-large) var(--spacing-2xl);
 
   gap: var(--spacing-small);
   img {
@@ -181,6 +181,44 @@
   color: var(--color-font-light-gray);
   padding: var(--spacing-xlarge);
 
+  @keyframes shimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
+
+  &.skeleton {
+    .percent-change-pill-skeleton,
+    .stat-value {
+      background: linear-gradient(
+        to right,
+        var(--color-skeleton) 8%,
+        var(--color-font-light) 18%,
+        var(--color-skeleton) 33%
+      );
+      background-size: 800px 104px;
+      color: transparent;
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: shimmer;
+      animation-timing-function: ease-in-out;
+
+      border-radius: 50px;
+      height: 20px;
+      width: 60px;
+
+      margin-top: var(--spacing-medium);
+    }
+    .percent-change-pill-skeleton .percent-change-pill {
+      height: 20px;
+      width: 30px;
+    }
+  }
+
   .stat-card-title {
     color: var(--color-font-light-gray);
     font-size: var(--font-size-medium);
@@ -279,5 +317,99 @@
 
   &:hover .tooltip {
     visibility: visible;
+  }
+}
+
+.intro-page {
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+
+  border: solid 2px var(--color-card-border);
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+
+  .header {
+    text-align: center;
+    align-items: center;
+
+    gap: var(--spacing-2xl);
+
+    p {
+      font-size: var(--font-size-medium);
+      color: var(--color-font-light-gray);
+    }
+
+    button {
+      width: 150px;
+    }
+  }
+
+  .connect-wallet-button {
+    background-color: #4caf50; // Green
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background-color: darken(#4caf50, 10%);
+    }
+  }
+
+  .metrics {
+    margin-bottom: 20px;
+
+    gap: var(--spacing-2xl);
+    padding-top: var(--spacing-4xl);
+
+    .metrics-subtitle {
+      font-size: var(--font-size-medium);
+      color: var(--color-font-light-gray);
+      text-align: center;
+    }
+
+    .metric-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  }
+
+  .stat-card {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  .claim-rewards-button {
+    background-color: #f44336; // Red
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    &:disabled {
+      background-color: lighten(#f44336, 10%);
+      cursor: not-allowed;
+    }
+  }
+
+  .coming-soon {
+    align-items: center;
+    gap: var(--spacing-small);
+    padding-top: var(--spacing-xlarge);
+    .coming-soon-badge {
+      width: 140px;
+    }
   }
 }

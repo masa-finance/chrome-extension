@@ -1,5 +1,7 @@
 // /src/background/postData.ts
 
+import { API_URL } from "../constants";
+
 export function postDataToServer(data: any, type: string, userAddress?: string): void {
   // Only send data if the type is 'pageView'
   if (type === 'pageView') {
@@ -22,7 +24,7 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
     // Log the payload for debugging
     console.log('Payload to be sent:', payload);
 
-    fetch('https://api.cookiemonster.masa.finance/tracking', {
+    fetch(`${API_URL}/tracking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

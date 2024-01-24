@@ -18,11 +18,10 @@ export const DashboardContextProvider: React.FC<{ children: React.ReactNode }> =
     const { initiateConnection, account } = useMetamask();
 
     const { metrics, isLoading, error } = useMetrics(account);
-    console.log("metrics", {metrics, isLoading, error});
+    console.log("metrics", { metrics, isLoading, error });
 
     const metricsData = useMemo(() => {
-        if (metrics) return calculateMetrics(metrics)
-        return null
+        return calculateMetrics(metrics);
     }, [metrics])
 
     const context = useMemo(() => ({ account, initiateConnection, metrics, isLoading, error, metricsData }), [account, initiateConnection, metrics, isLoading, error, metricsData])

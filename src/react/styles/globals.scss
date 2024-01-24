@@ -20,7 +20,7 @@
   // Font Weights
   --font-medium: 500;
   --font-semibold: 600;
-  --font-bold: 700;    
+  --font-bold: 700;
 
   // Sizes
   --font-size-xs: 12px;
@@ -30,28 +30,29 @@
   --font-size-large: 24px;
   --font-size-xlarge: 32px;
   --font-size-2xl: 56px;
-  
+
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 16px;
   --border-radius-xlarge: 32px;
-  
+
   // Colors
   --color-background: #252525;
   --color-card-background: #303030;
   --color-card-light-background: rgba(48, 48, 48, 0.05);
-  --color-card-border: #1F1F1F;
-  --color-tooltip-background: #242424;  
+  --color-card-border: #1f1f1f;
+  --color-tooltip-background: #242424;
   --color-border-light: #454545;
   --color-font-white: white;
   --color-font-black: black;
   --color-font-light: rgba(60, 60, 60, 0.8);
   --color-font-light-gray: #838383;
-  --color-font-lighter-gray: #D6D6D6;
-  
+  --color-font-lighter-gray: #d6d6d6;
+  --color-skeleton: rgba(255, 255, 255, 0.1);
+
   --color-disabled: #dedede;
 
-  --color-success: #28A745;
+  --color-success: #28a745;
   --color-error: #b42318;
   --color-primary: #e9bf78;
 
@@ -61,12 +62,13 @@
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
 
 body {

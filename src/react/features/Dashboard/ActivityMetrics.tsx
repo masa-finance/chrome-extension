@@ -3,11 +3,10 @@ import { StatCard } from './StatCard';
 import { useDashboardContext } from '../../contexts/DashboardContextProvider';
 
 export const ActivityMetrics = () => {
-  const { metricsData } = useDashboardContext()
+  const { metricsData, isLoading } = useDashboardContext()
 
-  if (!metricsData) {
-    return <div>Loading</div>
-  }
+  console.log({ metricsData, isLoading })
+
   return (
     <section className='activity-metrics'>
       <header className='metrics-header'>
@@ -29,7 +28,7 @@ export const ActivityMetrics = () => {
 
       <section className='stats-section'>
         {metricsData.map(cardData => {
-          return <StatCard {...cardData} />
+          return <StatCard {...cardData} isLoading={isLoading} />
         })}
       </section>
     </section>

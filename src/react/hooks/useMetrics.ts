@@ -1,4 +1,5 @@
 import { useAsync } from "react-use";
+import { API_URL } from "../../constants";
 
 export type Metrics = {
   bridge_count: string | null;
@@ -16,8 +17,6 @@ export type Metrics = {
   wallet_count: string | null;
   wallet_progress: string | null;
 };
-
-const API_URL = "https://dev.api.cookiemonster.masa.finance";
 
 export const useMetrics = (address?: string) => {
   const {
