@@ -52,8 +52,8 @@ export const useMetamask = () => {
   const [{ value: account, loading: isLoading }, fetchAccount] =
     useAsyncFn(async () => {
       const connectedAccount = await checkForConnectedAccount();
-
-      return connectedAccount;
+      const checksumAddress = ethers.utils.getAddress(connectedAccount ?? "0x");
+      return checksumAddress;
     }, []);
 
   useEffect(() => {
