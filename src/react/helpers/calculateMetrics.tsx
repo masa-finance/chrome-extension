@@ -70,7 +70,7 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
           value: metrics?.bridge_count,
         },
         {
-          label: "Wallet",
+          label: "Connected Wallets",
           value: metrics?.wallet_count,
         },
       ],
