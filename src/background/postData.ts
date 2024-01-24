@@ -11,7 +11,8 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
       event_data: {
         client_app: "Masa Chrome Extension",
         client_name: "Masa",
-        page: data.url
+        page: data.url,
+
       }
     };
 

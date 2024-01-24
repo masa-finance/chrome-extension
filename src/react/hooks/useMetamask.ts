@@ -1,6 +1,15 @@
 import { createExternalExtensionProvider } from "@metamask/providers";
+import { ethers } from "ethers";
 import { useEffect } from "react";
 import { useAsyncFn } from "react-use";
+
+const saveWallet = (wallet: string) => {
+  const checksumAddress = ethers.utils.getAddress(wallet);
+
+  chrome.storage.local.set({ userAddress: checksumAddress }, () => {
+    console.log("User address saved to storage:", checksumAddress); // Log the checksum address as it's being stored
+  });
+};
 
 // Function to initiate connection to MetaMask
 export const initiateConnection = async () => {
@@ -11,6 +20,7 @@ export const initiateConnection = async () => {
     })) as string[];
     if (accounts && accounts.length > 0) {
       console.log("accounts", accounts[0]);
+      saveWallet(accounts[0]);
     } else {
       console.error("No accounts returned from MetaMask.");
     }
@@ -28,6 +38,7 @@ export const checkForConnectedAccount = async () => {
     })) as string[];
     if (accounts && accounts.length > 0) {
       console.log("Accounts hook", accounts[0]);
+      saveWallet(accounts[0]);
       return accounts[0];
     } else {
       console.log("No accounts found. User needs to connect.");
