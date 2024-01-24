@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import { useAsyncFn } from "react-use";
 
 const saveWallet = (wallet: string) => {
-  const loweredAddress = wallet.toLocaleLowerCase();
-  const checksumAddress = ethers.utils.getAddress(loweredAddress);
+  const checksumAddress = ethers.utils.getAddress(wallet);
 
   chrome.storage.local.set({ userAddress: checksumAddress }, () => {
     console.log("User address saved to storage:", checksumAddress); // Log the checksum address as it's being stored
