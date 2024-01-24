@@ -1,0 +1,28 @@
+<!-- public/referrals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Referrals</title>
+    <link rel="stylesheet" href="dashboard.css"> <!-- Assuming you want to use the same stylesheet -->
+</head>
+<body>
+    <div class="header">
+        <h1>Extension Dashboard</h1>
+        <nav class="header-nav">
+            <a href="/dashboard.html" class="nav-link active">Dashboard</a>
+            <a href="/referrals.html" class="nav-link">Referrals</a>
+        </nav>
+        <div class="top-right-container">
+            <button id="walletButton">Connect Wallet</button>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Content for referrals page goes here -->
+        <p>Welcome to the Referrals page. Share your referral link and earn rewards!</p>
+        <!-- iframe is needed to display referrals modal due to chrome CSP restrictions -->
+        <iframe style='width:100%; height:800px;' src='https://embed.referral-factory.com/TbZKsE' frameborder="0"></iframe>
+    </div>
+    <script src="referrals.js"></script> <!-- Link to the referrals TypeScript compiled output -->
+</body>
+</html>

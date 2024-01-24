@@ -1,5 +1,7 @@
 // /src/background/postData.ts
 
+import { API_URL } from "../constants";
+
 export function postDataToServer(data: any, type: string, userAddress?: string): void {
   // Only send data if the type is 'pageView'
   if (type === 'pageView') {
@@ -9,19 +11,21 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
       event_data: {
         client_app: "Masa Chrome Extension",
         client_name: "Masa",
-        page: data.url
+        page: data.url,
+
       }
     };
 
     // Add user_address to the payload if it's available
     if (userAddress) {
+      console.log('User address before sending:', userAddress); // Log the user address to check its case
       payload.user_address = userAddress;
     }
 
     // Log the payload for debugging
     console.log('Payload to be sent:', payload);
 
-    fetch('https://api.cookiemonster.masa.finance/tracking', {
+    fetch(`${API_URL}/tracking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

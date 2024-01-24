@@ -1,82 +1,83 @@
 // src/popup/metamask.ts
 
 import { createExternalExtensionProvider } from '@metamask/providers';
+import { ethers } from 'ethers'; // Import ethers
 
+// Function to update UI with account address
+export const updateUI = (address: string, connectButton: HTMLButtonElement | null, accountAddress: HTMLElement | null) => {
+    // Convert the address to checksum address using ethers.js
+    const checksumAddress = ethers.utils.getAddress(address);
+
+    console.log('Received address from MetaMask:', checksumAddress); // Log the checksum address
+
+    if (accountAddress) {
+        accountAddress.textContent = `Connected account: ${checksumAddress}`;
+        // Update the button text and style
+        if (connectButton) {
+            connectButton.textContent = 'MetaMask Connected';
+            connectButton.classList.add('connected'); // Add a class for styling
+            connectButton.disabled = true; // Disable the button after successful connection
+        }
+        // Store the connected account address in chrome.storage.local in checksum format
+        chrome.storage.local.set({ userAddress: checksumAddress }, () => {
+            console.log('User address saved to storage:', checksumAddress); // Log the checksum address as it's being stored
+        });
+    } else {
+        console.error('accountAddress element not found');
+    }
+};
+
+// Function to initiate connection to MetaMask
+export const initiateConnection = async (connectButton: HTMLButtonElement | null, accountAddress: HTMLElement | null) => {
+    try {
+        const provider = createExternalExtensionProvider();
+        const accounts = await provider.request({ method: 'eth_requestAccounts' }) as string[];
+        if (accounts && accounts.length > 0) {
+            updateUI(accounts[0], connectButton, accountAddress);
+        } else {
+            console.error('No accounts returned from MetaMask.');
+        }
+    } catch (error) {
+        console.error('Error connecting to MetaMask:', error);
+    }
+};
+
+// Function to check for a connected account
+export const checkForConnectedAccount = async (connectButton: HTMLButtonElement | null, accountAddress: HTMLElement | null) => {
+    try {
+        const provider = createExternalExtensionProvider();
+        const accounts = await provider.request({ method: 'eth_accounts' }) as string[];
+        if (accounts && accounts.length > 0) {
+            updateUI(accounts[0], connectButton, accountAddress);
+        } else {
+            console.log('No accounts found. User needs to connect.');
+            if (connectButton) {
+                connectButton.disabled = false; // Ensure button is enabled if not connected
+            }
+        }
+    } catch (error) {
+        console.error('Error checking for connected account:', error);
+    }
+};
+
+// Main function to connect to MetaMask
 export function connectToMetaMask() {
     console.log('Attempting to connect to MetaMask');
     const connectButton = document.getElementById('connectButton') as HTMLButtonElement | null;
     const accountAddress = document.getElementById('accountAddress');
 
-    // Function to update UI with account address
-    const updateUI = (address: string) => {
-        if (accountAddress) {
-            accountAddress.textContent = `Connected account: ${address}`;
-            // Update the button text and style
-            if (connectButton) {
-                connectButton.textContent = 'MetaMask Connected';
-                connectButton.classList.add('connected'); // Add a class for styling
-                connectButton.disabled = true; // Disable the button after successful connection
-            }
-            // Store the connected account address in chrome.storage.local
-            chrome.storage.local.set({ userAddress: address }, () => {
-                console.log('User address saved to storage.');
-            });
-        } else {
-            console.error('accountAddress element not found');
-        }
-    };
-
-    // Function to initiate connection to MetaMask
-    const initiateConnection = async () => {
-        try {
-            const provider = createExternalExtensionProvider();
-            const accounts = await provider.request({ method: 'eth_requestAccounts' }) as string[];
-            if (accounts && accounts.length > 0) {
-                updateUI(accounts[0]);
-                if (connectButton) {
-                    connectButton.disabled = true; // Disable the button after successful connection
-                }
-            } else {
-                console.error('No accounts returned from MetaMask.');
-            }
-        } catch (error) {
-            console.error('Error connecting to MetaMask:', error);
-        }
-    };
-
     // Add click event listener to the connect button
     if (connectButton) {
-        connectButton.addEventListener('click', initiateConnection);
+        connectButton.addEventListener('click', () => initiateConnection(connectButton, accountAddress));
     } else {
         console.error('connectButton element not found');
     }
 
-    // Function to check for a connected account
-    const checkForConnectedAccount = async () => {
-        try {
-            const provider = createExternalExtensionProvider();
-            const accounts = await provider.request({ method: 'eth_accounts' }) as string[];
-            if (accounts && accounts.length > 0) {
-                updateUI(accounts[0]);
-                if (connectButton) {
-                    connectButton.disabled = true; // Disable the button if already connected
-                }
-            } else {
-                console.log('No accounts found. User needs to connect.');
-                if (connectButton) {
-                    connectButton.disabled = false; // Ensure button is enabled if not connected
-                }
-            }
-        } catch (error) {
-            console.error('Error checking for connected account:', error);
-        }
-    };
-
     // Check for a connected account when the popup is opened
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', checkForConnectedAccount);
+        document.addEventListener('DOMContentLoaded', () => checkForConnectedAccount(connectButton, accountAddress));
     } else {
-        checkForConnectedAccount();
+        checkForConnectedAccount(connectButton, accountAddress);
     }
 }
 

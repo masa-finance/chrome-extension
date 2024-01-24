@@ -1,0 +1,148 @@
+html {
+  width: 440px; /* max: 1000px */
+  height: 470px; /* max: 750px */
+}
+
+body {
+  padding: var(--spacing-xlarge);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-font-black);
+}
+
+.button {
+  background-color: #272727;
+  color: white;
+  border: none;
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: var(--font-size-smaller);
+  font-weight: 500;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #1e1e1e;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+}
+
+.alternative-button {
+  background-color: #ffffff;
+  color: var(--color-font-light);
+  border: 1px solid #d1d1d1;
+  padding: 8px 16px;
+  font-size: var(--font-size-smaller);
+  font-weight: 500;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #f7f7f7;
+    border-color: #c0c0c0;
+  }
+}
+
+.hr {
+  width: 100%;
+  height: 1px;
+
+  background-color: var(--color-disabled);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 70px; /* Increased width for a larger toggle */
+  height: 30px; /* Increased height for a larger toggle */
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px; /* Increased border-radius for a larger slider */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; /* Increased for a larger inner circle */
+  width: 26px; /* Increased for a larger inner circle */
+  left: 2px; /* Positioning the inner circle inside the slider */
+  bottom: 2px; /* Positioning the inner circle inside the slider */
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%; /* Circular shape for the inner circle */
+}
+
+input:checked + .slider {
+  background-color: var(--color-success);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px); /* Adjusted to fit the new width */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-success);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 50px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.permission-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold; /* Emphasize the text */
+}
+
+.permission-toggle span {
+  margin-right: 10px;
+}
+

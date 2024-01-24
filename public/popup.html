@@ -1,27 +1,12 @@
 <!-- public/popup.html -->
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Masa Data Manager</title>
-  <link rel="stylesheet" href="popup.css">
-</head>
-<body>
-  <div class="logo-container">
-    <img src="logo-black-2x.png" alt="Masa Black Logo" id="logo">
-  </div>
-  <h1>Masa Data Manager</h1>
-  <p class="description">
-    Take control of your browsing data. With Masa Data Manager, you can choose to monetize your data and participate in quests and campaigns on the Masa zk-Data Network. Grant permission to start tracking your data or revoke it at any time.
-  </p>
-  <button id="connectButton">Connect to MetaMask</button>
-  <div id="accountAddress"></div>
-  <div class="permission-toggle">
-    <span>Enable Tracking:</span>
-    <label class="toggle-switch">
-      <input type="checkbox" id="toggle-permission">
-      <span class="slider round"></span>
-    </label>
-  </div>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <title>Masa Data Manager</title>
+    <link rel="stylesheet" href="react_popup.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="react_popup.js"></script>
+  </body>
 </html>
