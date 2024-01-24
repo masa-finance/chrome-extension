@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension",
-  "version": "1.0.0",
-  "description": "",
+  "name": "masa-chrome-extension",
+  "version": "1.0.1",
+  "description": "Masa Chome Extension",
   "main": "index.js",
   "type": "module",
   "scripts": {
