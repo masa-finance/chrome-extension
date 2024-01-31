@@ -6,7 +6,7 @@ export function navigationListener(): void {
   chrome.webNavigation.onCompleted.addListener((details) => {
     if (details.frameId === 0) {
       console.log('Main frame navigation completed:', details);
-      sendPageView(details.url);
+      sendPageView();
     } else {
       console.log('Subframe navigation completed, ignored.');
     }

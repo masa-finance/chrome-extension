@@ -12,7 +12,9 @@ export function postDataToServer(data: any, type: string, userAddress?: string):
         client_app: "Masa Chrome Extension",
         client_name: "Masa",
         page: data.url,
-
+        page_title: data.page_title,
+        description: data.description,
+        keywords: data.keywords,
       }
     };
 
