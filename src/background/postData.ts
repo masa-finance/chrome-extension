@@ -1,8 +1,9 @@
 // /src/background/postData.ts
 
 import { API_URL } from "../constants";
+import { pageViewDataType } from "./pageView";
 
-export function postDataToServer(data: any, type: string, userAddress?: string): void {
+export function postDataToServer(data: pageViewDataType, type: string, userAddress?: string): void {
   // Only send data if the type is 'pageView'
   if (type === 'pageView') {
     const payload: any = {

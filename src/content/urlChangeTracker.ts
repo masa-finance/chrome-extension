@@ -16,7 +16,6 @@ export function trackUrlChanges(): void {
   };
 
   const sendMessage = () => {
-    console.log("SENDING MESSAGE TO EXTENSION");
     const url: string = location.href;
     if (url !== lastUrl) {
       lastUrl = url;

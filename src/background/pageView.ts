@@ -2,14 +2,14 @@
 
 import { postDataToServer } from './postData';
 
-type pageViewEventType = {
+export type pageViewDataType = {
   url: string,
-  page_title: string,
-  description: string,
-  keywords: string
+  page_title?: string,
+  description?: string,
+  keywords?: string[]
 }
 
-export function sendPageView(data: pageViewEventType): void {
+export function sendPageView(data: pageViewDataType): void {
   chrome.storage.local.get(['trackingEnabled', 'userAddress'], (result) => {
     // Log the entire result object for debugging
     console.log('Storage result:', result); 
