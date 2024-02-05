@@ -44,7 +44,7 @@
     "react-dom": "^18.2.0",
     "react-use": "^17.5.0",
     "sass": "^1.70.0",
-    "sass-loader": "^14.0.0",
+    "sass-loader": "^14.1.0",
     "web-ext": "^7.11.0"
   }
 }
