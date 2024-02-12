@@ -16,8 +16,13 @@ export type Metrics = {
   trade_progress: string | null;
   wallet_count: string | null;
   wallet_progress: string | null;
-  totalCount: string | null;
+  totalPoints: string | null;
   average_progress: string | null;
+};
+
+export type NewPoints = {
+  transactionPoints: number | null;
+  surfPoints: number | null;
 };
 
 export const useMetrics = (address?: string) => {
@@ -28,7 +33,7 @@ export const useMetrics = (address?: string) => {
   } = useAsync(async () => {
     if (!address) return null;
     try {
-      const response = await fetch(`${API_URL}/address/stats/${address}`);
+      const response = await fetch(`${API_URL}/profile/points/${address}`);
       const responseData = (await response.json()) as Metrics;
 
       return responseData;
@@ -37,5 +42,22 @@ export const useMetrics = (address?: string) => {
     }
   }, [address]);
 
-  return { metrics, isLoading, error };
+
+  const {
+    value: newPoints,
+    loading: isLoadingNewPoints,
+    error: newPointsErrors,
+  } = useAsync(async () => {
+    if (!address) return null;
+    try {
+      const response = await fetch(`${API_URL}/profile/new-points/${address}`);
+      const responseData = (await response.json()) as NewPoints;
+
+      return responseData;
+    } catch (e) {
+      throw e;
+    }
+  }, [address]);
+
+  return { metrics, isLoading: isLoading || isLoadingNewPoints, error, newPoints, isLoadingNewPoints, newPointsErrors  };
 };

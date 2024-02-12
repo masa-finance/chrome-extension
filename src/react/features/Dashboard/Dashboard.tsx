@@ -7,6 +7,7 @@ import IntroPage from './IntroPage';
 
 export const Dashboard = () => {
     const { account, isLoading } = useDashboardContext()
+
     return (
 
         <div className='dashboard'>

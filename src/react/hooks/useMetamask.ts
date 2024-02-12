@@ -1,10 +1,10 @@
 import { createExternalExtensionProvider } from "@metamask/providers";
-import { ethers } from "ethers";
+import { getAddress } from "ethers";
 import { useEffect } from "react";
 import { useAsyncFn } from "react-use";
 
 const saveWallet = (wallet: string) => {
-  const checksumAddress = ethers.utils.getAddress(wallet);
+  const checksumAddress = getAddress(wallet);
 
   chrome.storage.local.set({ userAddress: checksumAddress }, () => {
     console.log("User address saved to storage:", checksumAddress); // Log the checksum address as it's being stored
@@ -52,7 +52,7 @@ export const useMetamask = () => {
   const [{ value: account, loading: isLoading }, fetchAccount] =
     useAsyncFn(async () => {
       const connectedAccount = await checkForConnectedAccount();
-      const checksumAddress = ethers.utils.getAddress(connectedAccount ?? "0x");
+      const checksumAddress = getAddress(connectedAccount ?? "0x");
       return checksumAddress;
     }, []);
 

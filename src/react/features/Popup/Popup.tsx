@@ -10,11 +10,11 @@ import { MetamaskConnectButton } from './MetamaskConnectButton';
 import { useMetrics } from '../../hooks/useMetrics';
 import { useMetamask } from '../../hooks/useMetamask';
 
+
 export const Popup = () => {
 
     const { account, isLoading: isMetamaskLoading } = useMetamask();
-    const { metrics, isLoading } = useMetrics(account);
-
+    const { metrics, isLoading, newPoints } = useMetrics(account);
     const loading = isLoading || isMetamaskLoading;
 
     const spacingSmall = getComputedStyle(document.documentElement)
@@ -35,31 +35,44 @@ export const Popup = () => {
 
             <Column className="light-card" style={{ gap: spacingLarge }}>
                 <Column style={{ gap: spacingLarge }}>
-                    <Row style={{ gap: spacingSmall }}>
-                        <img src="/icons/wallet.png" alt="wallet-icon" style={{ width: 20, height: 20 }} />
+                    <Row style={{ gap: spacingSmall, justifyContent: 'space-between' }}>
+                        <Row style={{ gap: spacingSmall }}>
+                            <img src="/icons/wallet.png" alt="wallet-icon" style={{ width: 20, height: 20 }} />
 
-                        <Column style={{ gap: spacingSmall }}>
-                            <h2 className='small-text'>Wallet activity insights</h2>
-                            <p className='smaller-text'>Connect your wallet to track your activity and accumulate points</p>
-                        </Column>
+                            <Column style={{ gap: spacingSmall }}>
+                                <h2 className='small-text'>Transaction rewards</h2>
+                                <p className='smaller-text'>{!account ? "Connect your wallet to earn points by sharing your web3 activity" : "Sharing wallet activity"}</p>
+                            </Column>
+                        </Row>
+                        {account && <p className='note-text' style={{ fontSize: 14 }}><span className="positive-value-text">+{newPoints?.transactionPoints ?? 0}</span> new points</p>}
+
 
                     </Row>
-                    <MetamaskConnectButton />
+                    <Column style={{ gap: spacingSmall }}>
+                        <MetamaskConnectButton />
+                        {!account && <p className='note-text' style={{ textAlign: 'center' }}>We only support MetaMask at this time</p>}
+                    </Column>
                 </Column>
                 <div className="hr" />
                 <Column>
-                    <Row style={{ gap: spacingSmall, alignItems: 'center' }}>
+                    <Row style={{ gap: spacingSmall, alignItems: 'flex-start', justifyContent: "flex-end" }}>
                         <Row style={{ gap: spacingSmall, alignItems: 'flex-start' }}>
                             <img src="/icons/earn.png" alt="earn-icon" style={{ width: 20, height: 20 }} />
                             <Column style={{ gap: spacingSmall }}>
                                 <h2 className='small-text'>Earn while you surf</h2>
-                                <p className='small-text'>Enable browsing data tracking and earn points</p>
-                                <p className='note-text'>Your data will remain private and never be shared without your consent</p>
+                                <p className='small-text'>Earn points when sharing your browsing data.</p>
                             </Column>
+
                         </Row>
 
-                        <EnableTracking />
+                        <Column style={{ alignItems: 'flex-start', width: 190, gap: spacingSmall }}>
+                            {account && <p className='note-text' style={{ fontSize: 14 }}><span className="positive-value-text">+{newPoints?.surfPoints ?? 0}</span> new points</p>}
+                            <Row style={{ width: '100%', justifyContent: 'flex-end' }}>
+                                <EnableTracking />
+                            </Row>
+                        </Column>
                     </Row>
+                    {!account && <p className='note-text' style={{ marginLeft: 28, marginTop: spacingLarge }}>Your data will remain private and never be shared without your consent</p>}
                 </Column>
             </Column>
 
@@ -67,7 +80,7 @@ export const Popup = () => {
             <Row style={{ justifyContent: 'space-between' }}>
                 <Column style={{ alignItems: 'flex-end' }} className="rewards">
                     <p>View current rewards</p>
-                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalCount} points</p>
+                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalPoints} points</p>
                 </Column>
 
                 <a href="dashboard.html" target="_blank"><AlternativeButton>Go to dashboard</AlternativeButton></a>
