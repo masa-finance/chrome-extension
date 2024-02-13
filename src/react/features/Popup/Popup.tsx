@@ -44,7 +44,7 @@ export const Popup = () => {
                                 <p className='smaller-text'>{!account ? "Connect your wallet to earn points by sharing your web3 activity" : "Sharing wallet activity"}</p>
                             </Column>
                         </Row>
-                        {account && <p className='note-text' style={{ fontSize: 14 }}><span className="positive-value-text">+{newPoints?.transactionPoints ?? 0}</span> new points</p>}
+                        {account && <p className='note-text' style={{ fontSize: 14 }}><span className={newPoints?.transactionPoints ? "positive-value-text" : ""}>{newPoints?.transactionPoints ? "+" : ""}{newPoints?.transactionPoints ?? 0}</span> new points</p>}
 
 
                     </Row>
@@ -65,10 +65,10 @@ export const Popup = () => {
 
                         </Row>
 
-                        <Column style={{ alignItems: 'flex-start', width: 190, gap: spacingSmall }}>
-                            {account && <p className='note-text' style={{ fontSize: 14 }}><span className="positive-value-text">+{newPoints?.surfPoints ?? 0}</span> new points</p>}
+                        <Column style={{ alignItems: 'flex-end', width: 190, gap: spacingSmall }}>
+                            {account && <p className='note-text' style={{ fontSize: 14 }}><span className={newPoints?.surfPoints ? "positive-value-text" : ""}>{newPoints?.surfPoints ? "+" : ""}{newPoints?.surfPoints ?? 0}</span> new points</p>}
                             <Row style={{ width: '100%', justifyContent: 'flex-end' }}>
-                                <EnableTracking />
+                                {account && <EnableTracking />}
                             </Row>
                         </Column>
                     </Row>
@@ -77,11 +77,11 @@ export const Popup = () => {
             </Column>
 
 
-            <Row style={{ justifyContent: 'space-between' }}>
-                <Column style={{ alignItems: 'flex-end' }} className="rewards">
+            <Row style={{ justifyContent: account ? 'space-between' : "flex-end" }}>
+                {account && <Column style={{ alignItems: 'flex-end' }} className="rewards">
                     <p>View current rewards</p>
-                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalPoints} points</p>
-                </Column>
+                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalPoints ?? 0} points</p>
+                </Column>}
 
                 <a href="dashboard.html" target="_blank"><AlternativeButton>Go to dashboard</AlternativeButton></a>
             </Row>

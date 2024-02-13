@@ -19,7 +19,7 @@ export const MetamaskConnectButton = () => {
     }, [account])
 
 
-    let shortAccount = account ? `${account.slice(0,6)}...${account.slice(-4)}` : null;
+    let shortAccount = account ? `${account.slice(0, 18)}...${account.slice(-4)}` : null;
 
 
     if (account) {
@@ -29,16 +29,16 @@ export const MetamaskConnectButton = () => {
                 width: 40,
             }}>
                 <Jazzicon diameter={30} seed={jsNumberForAddress(account ?? '')} />
-                <LittleMetamaskIcon width={20} height={20} style={{
+                <LittleMetamaskIcon width={24} height={24} style={{
                     position: 'absolute',
                     top: 0,
                     left: -8,
                 }} />
             </Row>
 
-            <Column>
-                { !isLoadingSoulname && <p>{soulnames?.[0]?.name ?? ""}</p> }
-                <p>{shortAccount}</p>
+            <Column style={{ justifyContent: 'center' }}>
+                {!isLoadingSoulname && <p>{soulnames?.[0]?.name ?? ""}</p>}
+                <p style={{ fontWeight: 400 }}>{shortAccount}</p>
             </Column>
         </Row>
 
