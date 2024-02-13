@@ -26,7 +26,7 @@ export const ActivityMetrics = () => {
 
       <section className='stats-section'>
         {metricsData.map(cardData => {
-          return <StatCard {...cardData} isLoading={isLoading} />
+          return <StatCard  {...cardData} isLoading={isLoading} />
         })}
       </section>
     </section>

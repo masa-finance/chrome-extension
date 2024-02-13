@@ -66,7 +66,6 @@ const IntroPage = () => {
                     <StatCard
                         title="Browsing"
                         subTitle="vs last week"
-                        columnWidth={1}
                         percentChange={40}
                         stats={browsingStats}
                         isLoading={true}
@@ -74,7 +73,6 @@ const IntroPage = () => {
                     <StatCard
                         title="Masa"
                         subTitle="All time"
-                        columnWidth={1}
                         percentChange={12}
                         stats={masaStats}
                         isLoading={true}
@@ -82,7 +80,6 @@ const IntroPage = () => {
                     <StatCard
                         title="Wallet activity"
                         subTitle="vs last week"
-                        columnWidth={2}
                         percentChange={200}
                         stats={walletActivityStats}
                         isLoading={true}
