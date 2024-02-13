@@ -1,28 +1,28 @@
 import React from 'react';
-import { Metrics } from "../hooks/useMetrics";
+import { Metrics, useMetrics } from "../hooks/useMetrics";
 import { Tooltip } from '../features/Dashboard/Tooltip';
 
-export const calculateMetrics = (metrics?: Metrics | null) => {
+export const calculateMetrics = (metrics?: ReturnType<typeof useMetrics> | null) => {
 
   const metricsData = [
     {
       title: "Browsing",
       subTitle: "vs last week",
-      percentChange: metrics?.pageViewProgress,
+      percentChange: metrics?.progresses?.pageViewProgress,
       pointValue: 2,
       tooltip: 'Get 2 points per page view when the surf the web extension is enabled.',
       tooltipExtra: <p>Maximum of 1,000 points per day</p>,
       stats: [
         {
           label: "Page views",
-          value: metrics?.cappedPageViews,
+          value: metrics?.points?.cappedPageViews,
         },
       ],
     },
     {
       title: "Masa app",
       subTitle: "All time",
-      percentChange: metrics?.loginProgress,
+      percentChange: metrics?.progresses?.loginProgress,
       pointValue: 3,
       tooltip: 'Get 3 points per daily login on the main Masa web application.',
       link: {
@@ -32,7 +32,7 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       stats: [
         {
           label: "Logins",
-          value: metrics?.login,
+          value: metrics?.points?.login,
         },
         {
           label: (
@@ -43,15 +43,15 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
                 gap: "var(--spacing-xsmall)",
               }}
             >
-            Daily login +10x
-            <Tooltip
-              title="Daily login 10x the points"
-              description='Get 10 times the total points of a week when you login daily 7 days in a row to the Masa web app.'
-              pointValue='10X'
-            />
+              Daily login +10x
+              <Tooltip
+                title="Daily login 10x the points"
+                description='Get 10 times the total points of a week when you login daily 7 days in a row to the Masa web app.'
+                pointValue='10X'
+              />
             </div>
           ),
-          value: `${metrics?.consecutiveLoginDays} of 7`,
+          value: `${metrics?.loginDays?.consecutiveLoginDays} of 7`,
         },
       ],
     },
@@ -68,19 +68,19 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
         <p>Bridge transactions with the connected wallet.</p>
       </>),
       pointValue: 10,
-      percentChange: metrics?.walletProgress,
+      percentChange: metrics?.progresses?.walletProgress,
       stats: [
         {
           label: "Wallet connections",
-          value: metrics?.wallet,
+          value: metrics?.points?.wallet,
         },
         {
           label: "Trades",
-          value: metrics?.trade,
+          value: metrics?.points?.trade,
         },
         {
           label: "Bridge",
-          value: metrics?.bridge,
+          value: metrics?.points?.bridge,
         },
       ],
     },
@@ -112,15 +112,15 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
         label: "Mint another soul",
         url: "https://app.masa.finance/soulnames",
       },
-      percentChange: metrics?.mintProgress,
+      percentChange: metrics?.progresses?.mintProgress,
       stats: [
         {
           label: "SBTs",
-          value: metrics?.tokenMint,
+          value: metrics?.points?.tokenMint,
         },
         {
           label: "Souls",
-          value: metrics?.soulMint,
+          value: metrics?.points?.soulMint,
         },
       ],
     },
@@ -129,7 +129,7 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       subTitle: "All time",
       tooltip: 'Get 50 points the first time you connect a new social connection.',
       pointValue: 50,
-      percentChange: metrics?.tradeProgress,
+      percentChange: metrics?.progresses?.tradeProgress,
       link: {
         label: "Connect",
         url: "https://app.masa.finance/",
@@ -137,7 +137,7 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       stats: [
         {
           label: "TODO",
-          value: metrics?.trade,
+          value: metrics?.points?.trade,
         },
       ],
     },

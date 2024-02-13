@@ -14,12 +14,12 @@ const Changeline = ({ value }) => {
 export const TotalPoints = () => {
 
   const { metrics, isLoading } = useDashboardContext()
-  const percentChange = metrics?.averageProgress;
+  const percentChange = metrics?.progresses?.averageProgress;
 
     return (
     <div className='total-points'>
       <h2>Points Earned</h2>
-      <h1 className={`${isLoading ? "skeleton" : ''}`}>{metrics?.totalPoints}</h1>
+      <h1 className={`${isLoading ? "skeleton" : ''}`}>{metrics?.points?.totalPoints}</h1>
       {percentChange && percentChange !== 0 ? <Changeline value={percentChange} /> : null}
     </div>
   )

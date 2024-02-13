@@ -14,7 +14,8 @@ import { useMetamask } from '../../hooks/useMetamask';
 export const Popup = () => {
 
     const { account, isLoading: isMetamaskLoading } = useMetamask();
-    const { metrics, isLoading, newPoints } = useMetrics(account);
+    const metrics = useMetrics(account);
+    const { isLoading, newPoints, points } = metrics
     const loading = isLoading || isMetamaskLoading;
 
     const spacingSmall = getComputedStyle(document.documentElement)
@@ -80,7 +81,7 @@ export const Popup = () => {
             <Row style={{ justifyContent: account ? 'space-between' : "flex-end" }}>
                 {account && <Column style={{ alignItems: 'flex-end' }} className="rewards">
                     <p>View current rewards</p>
-                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{metrics?.totalPoints ?? 0} points</p>
+                    <p className={`reward-points ${loading ? "skeleton" : ""}`}>{points?.totalPoints ?? 0} points</p>
                 </Column>}
 
                 <a href="dashboard.html" target="_blank"><AlternativeButton>Go to dashboard</AlternativeButton></a>

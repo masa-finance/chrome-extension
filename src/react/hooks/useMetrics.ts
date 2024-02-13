@@ -66,7 +66,7 @@ export const useMetrics = (address?: string) => {
       const response = await fetch(`${API_URL}/profile/points/${address}`);
       const responseData = (await response.json()) as Points;
 
-      return { responseData };
+      return responseData;
     } catch (e) {
       throw e;
     }
@@ -82,7 +82,7 @@ export const useMetrics = (address?: string) => {
       const response = await fetch(`${API_URL}/profile/new-points/${address}`);
       const responseData = (await response.json()) as NewPoints;
 
-      return { responseData };
+      return responseData;
     } catch (e) {
       throw e;
     }
@@ -98,7 +98,7 @@ export const useMetrics = (address?: string) => {
       const response = await fetch(`${API_URL}/profile/progresses/${address}`);
       const responseData = (await response.json()) as Progresses;
 
-      return { responseData };
+      return responseData;
     } catch (e) {
       throw e;
     }
@@ -145,6 +145,6 @@ export const useMetrics = (address?: string) => {
     loginDaysError,
     isLoading,
     newPoints,
-    newPointsError
+    newPointsError,
   };
 };
