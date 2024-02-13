@@ -1,29 +1,38 @@
 import React from 'react';
 import { Metrics } from "../hooks/useMetrics";
+import { Tooltip } from '../features/Dashboard/Tooltip';
 
 export const calculateMetrics = (metrics?: Metrics | null) => {
+
   const metricsData = [
     {
       title: "Browsing",
       subTitle: "vs last week",
-      percentChange: metrics?.page_view_progress,
-      columnWidth: 1,
+      percentChange: metrics?.pageViewProgress,
+      pointValue: 2,
+      tooltip: 'Get 2 points per page view when the surf the web extension is enabled.',
+      tooltipExtra: <p>Maximum of 1,000 points per day</p>,
       stats: [
         {
           label: "Page views",
-          value: metrics?.page_view_count,
+          value: metrics?.cappedPageViews,
         },
       ],
     },
     {
-      title: "Masa",
+      title: "Masa app",
       subTitle: "All time",
-      percentChange: metrics?.login_progress,
-      columnWidth: 1,
+      percentChange: metrics?.loginProgress,
+      pointValue: 3,
+      tooltip: 'Get 3 points per daily login on the main Masa web application.',
+      link: {
+        label: "Login to Masa app",
+        url: "https://app.masa.finance",
+      },
       stats: [
         {
           label: "Logins",
-          value: metrics?.login_count,
+          value: metrics?.login,
         },
         {
           label: (
@@ -34,44 +43,44 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
                 gap: "var(--spacing-xsmall)",
               }}
             >
-              7 day 10x
-              <div className="help-icon">
-                <img
-                  src="icons/question-mark-in-circle.svg"
-                  width="19"
-                  height="19"
-                />
-                <div className="tooltip">
-                  <h5 className="tooltip-title">Weekly 10X login</h5>
-                  <p className="tooltip-body">
-                    Login everyday of the week to Masa and 10X all your points
-                    for that week.
-                  </p>
-                </div>
-              </div>
+            Daily login +10x
+            <Tooltip
+              title="Daily login 10x the points"
+              description='Get 10 times the total points of a week when you login daily 7 days in a row to the Masa web app.'
+              pointValue='10X'
+            />
             </div>
           ),
-          value: `${metrics?.login_consecutive_days} of 7`,
+          value: `${metrics?.consecutiveLoginDays} of 7`,
         },
       ],
     },
     {
       title: "Wallet activity",
       subTitle: "vs last week",
-      columnWidth: 2,
-      percentChange: metrics?.wallet_progress,
+      tooltip: 'Get 10 points per wallet event while sharing your wallet information.',
+      tooltipExtra: (<>
+        <h4>Wallet connections</h4>
+        <p>The number of times the same wallet has been connected.</p>
+        <h4>Trades</h4>
+        <p>The number of DEX trades with the connected wallet.</p>
+        <h4>Bridge</h4>
+        <p>Bridge transactions with the connected wallet.</p>
+      </>),
+      pointValue: 10,
+      percentChange: metrics?.walletProgress,
       stats: [
         {
-          label: "Swap",
-          value: metrics?.swap_count,
+          label: "Wallet connections",
+          value: metrics?.wallet,
+        },
+        {
+          label: "Trades",
+          value: metrics?.trade,
         },
         {
           label: "Bridge",
-          value: metrics?.bridge_count,
-        },
-        {
-          label: "Connected Wallets",
-          value: metrics?.wallet_count,
+          value: metrics?.bridge,
         },
       ],
     },
@@ -79,8 +88,6 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
       isComingSoon: true,
       title: "Referred friends",
       subTitle: "vs last week",
-      columnWidth: 2,
-      // percentChange: 0,
       link: {
         label: "Invite more friends",
         url: "#",
@@ -99,32 +106,38 @@ export const calculateMetrics = (metrics?: Metrics | null) => {
     {
       title: "Minted",
       subTitle: "vs last week",
-      columnWidth: 2,
+      tooltip: 'Get 15 point for every SBT that is minted with a soul name or campaign completion.',
+      pointValue: 15,
       link: {
         label: "Mint another soul",
         url: "https://app.masa.finance/soulnames",
       },
-      percentChange: metrics?.mint_progress,
+      percentChange: metrics?.mintProgress,
       stats: [
         {
-          label: "Tokens",
-          value: metrics?.token_mint_count,
+          label: "SBTs",
+          value: metrics?.tokenMint,
         },
         {
           label: "Souls",
-          value: metrics?.soul_mint_count,
+          value: metrics?.soulMint,
         },
       ],
     },
     {
-      title: "Dex trade",
-      subTitle: "vs last week",
-      columnWidth: 1,
-      percentChange: metrics?.trade_progress,
+      title: "Social connections",
+      subTitle: "All time",
+      tooltip: 'Get 50 points the first time you connect a new social connection.',
+      pointValue: 50,
+      percentChange: metrics?.tradeProgress,
+      link: {
+        label: "Connect",
+        url: "https://app.masa.finance/",
+      },
       stats: [
         {
-          label: "Trades",
-          value: metrics?.trade_count,
+          label: "TODO",
+          value: metrics?.trade,
         },
       ],
     },

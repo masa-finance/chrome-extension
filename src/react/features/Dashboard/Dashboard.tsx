@@ -6,15 +6,19 @@ import { Header } from './Header';
 import IntroPage from './IntroPage';
 
 export const Dashboard = () => {
-    const { account, isLoading } = useDashboardContext()
-    return (
+  const { account, isLoading } = useDashboardContext()
+  return (
 
-        <div className='dashboard'>
-            <Sidebar />
-            {account && <Content />}
-            {!isLoading && !account && <div className='content'>
-                <Header /><IntroPage /></div>}
+    <div className='dashboard'>
+      <Sidebar />
+      {account && <Content />}
+      {!isLoading && !account && (
+        <div className='content'>
+          <Header />
+          <IntroPage />
         </div>
+      )}
+    </div>
 
-    )
+  )
 }

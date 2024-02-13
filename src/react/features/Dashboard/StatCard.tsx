@@ -1,6 +1,8 @@
 import React from 'react';
 import { ReactNode } from "react"
 import { PercentChange } from "./PercentChange"
+import { Tooltip } from './Tooltip';
+import { EnableTracking } from '../../components/EnableTracking';
 
 type Stat = {
   label: ReactNode,
@@ -15,27 +17,31 @@ type Link = {
 type StatCardProps = {
   title: string,
   subTitle: string,
-  columnWidth: number,
   percentChange: number,
   stats: Stat[],
   link?: Link,
   isLoading?: boolean,
-  isComingSoon?: boolean
+  isComingSoon?: boolean,
+  tooltip?: string,
+  tooltipExtra: ReactNode,
+  pointValue: number
 }
 
 export const StatCard = ({
   title,
   subTitle,
-  columnWidth,
   percentChange,
   stats,
   link,
   isLoading,
-  isComingSoon
+  isComingSoon,
+  tooltip,
+  tooltipExtra,
+  pointValue,
 }: StatCardProps) => {
   if (isLoading) {
     return (
-      <div className='stat-card skeleton' style={{ gridColumn: `span ${columnWidth}` }}>
+      <div className='stat-card skeleton' style={{ gridColumn: 'span 2' }}>
         <header>
           <h3 className='stat-card-title'>{title}</h3>
           {(!percentChange || percentChange === 0) && <div className='percent-change-pill-skeleton' />}
@@ -58,9 +64,19 @@ export const StatCard = ({
     )
   }
   return (
-    <div className='stat-card' style={{ gridColumn: `span ${columnWidth}` }}>
+    <div className='stat-card' style={{ gridColumn: 'span 2' }}>
       <header>
-        <h3 className='stat-card-title'>{title}</h3>
+        <h3 className='stat-card-title'>
+          {title}
+          {tooltip && (
+            <Tooltip
+              title={title}
+              description={tooltip}
+              body={tooltipExtra}
+              pointValue={`+${pointValue}`}
+            />
+          )}
+        </h3>
         {!isComingSoon && <>{percentChange && percentChange !== 0 && <div className='percent-change-pill'>
           <PercentChange value={percentChange} />
         </div>}</>}
@@ -69,7 +85,7 @@ export const StatCard = ({
           Coming soon
         </div>}
       </header>
-      <h4 className='stat-card-subtitle'>{subTitle}</h4>
+      {!isComingSoon && <h4 className='stat-card-subtitle'>{subTitle}</h4>}
       <section className='stats'>
         {stats.map(statData => {
           return (
@@ -80,6 +96,9 @@ export const StatCard = ({
           )
         })}
         {link && <a className={`stat-card-link ${isComingSoon ? "coming-soon" : ""}`} target='_blank' href={link.url}>{link.label}</a>}
+        {title === 'Browsing' && (
+          <div className='tracking-toggle'>Enable to earn points <EnableTracking /></div>
+        )}
       </section>
     </div>
   )
