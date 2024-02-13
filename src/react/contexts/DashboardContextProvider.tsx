@@ -6,7 +6,7 @@ import { calculateMetrics } from '../helpers/calculateMetrics';
 interface DashboardContextProps {
     initiateConnection: () => void;
     account?: string;
-    metrics?: Metrics | null;
+    metrics?: ReturnType<typeof useMetrics> | null;
     isLoading?: boolean;
     error?: any;
     metricsData?: any | null;
@@ -17,7 +17,8 @@ const DashboardContext = createContext<DashboardContextProps | undefined>(undefi
 export const DashboardContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const { initiateConnection, account } = useMetamask();
 
-    const { metrics, isLoading, error } = useMetrics(account);
+    const metrics = useMetrics(account);
+    const { isLoading, pointsError: error } = metrics
 
     const metricsData = useMemo(() => {
         return calculateMetrics(metrics);

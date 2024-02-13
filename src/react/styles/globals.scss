@@ -3,15 +3,15 @@
   --font-inter: "Inter", sans-serif;
 
   // Spacings
-  --spacing-2xs: 2px;
+  --spacing-2xsmall: 2px;
   --spacing-xsmall: 4px;
   --spacing-small: 8px;
   --spacing-medium: 12px;
   --spacing-large: 16px;
   --spacing-xlarge: 24px;
-  --spacing-2xl: 32px;
-  --spacing-3xl: 48px;
-  --spacing-4xl: 64px;
+  --spacing-2xlarge: 32px;
+  --spacing-3xlarge: 48px;
+  --spacing-4xlarge: 64px;
 
   // Fonts
   --font-primary: var(--font-inter);
@@ -23,13 +23,13 @@
   --font-bold: 700;
 
   // Sizes
-  --font-size-xs: 12px;
+  --font-size-xsmall: 12px;
   --font-size-smaller: 14px;
   --font-size-small: 15px;
   --font-size-medium: 18px;
   --font-size-large: 24px;
   --font-size-xlarge: 32px;
-  --font-size-2xl: 56px;
+  --font-size-2xlarge: 56px;
 
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
@@ -50,6 +50,7 @@
   --color-font-light-gray: #838383;
   --color-font-lighter-gray: #d6d6d6;
   --color-skeleton: rgba(255, 255, 255, 0.1);
+  --color-button-light: #DCDCDC;
 
   --color-disabled: #dedede;
 
@@ -132,7 +133,7 @@ h6 {
 
 .light-card {
   background: var(--color-card-light-background);
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-2xlarge);
 }
 
 .logo-invert {

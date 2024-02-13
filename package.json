@@ -1,6 +1,6 @@
 {
   "name": "masa-chrome-extension",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Masa Chome Extension",
   "main": "index.js",
   "type": "module",
@@ -42,6 +42,7 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-jazzicon": "^1.0.4",
     "react-use": "^17.5.0",
     "sass": "^1.70.0",
     "sass-loader": "^14.1.0",
