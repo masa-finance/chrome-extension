@@ -1,5 +1,6 @@
 import { useAsync } from "react-use";
 import { API_URL } from "../../constants";
+import { useMemo } from "react";
 
 export type Points = {
   cappedPageViews: number | null;
@@ -30,17 +31,35 @@ export type Progresses = {
 export type NewPoints = {
   transactionPoints: number | null;
   surfPoints: number | null;
-}
+};
 
 export type LoginDays = {
   consecutiveLoginDays: number | null;
 };
+export type Metrics = {
+  bridge_count: string | null;
+  login_consecutive_days: string | null;
+  login_count: string | null;
+  login_progress: string | null;
+  mint_progress: string | null;
+  page_view_count: string | null;
+  page_view_progress: string | null;
+  soul_mint_count: string | null;
+  swap_count: string | null;
+  token_mint_count: string | null;
+  trade_count: string | null;
+  trade_progress: string | null;
+  wallet_count: string | null;
+  wallet_progress: string | null;
+  totalPoints: string | null;
+  average_progress: string | null;
+};
 
 export const useMetrics = (address?: string) => {
   const {
-    value: points
+    value: points,
     loading: isLoadingPoints,
-    error,
+    error: pointsError,
   } = useAsync(async () => {
     if (!address) return null;
     try {
@@ -54,9 +73,9 @@ export const useMetrics = (address?: string) => {
   }, [address]);
 
   const {
-    value: newPoints
+    value: newPoints,
     loading: isLoadingNewPoints,
-    error,
+    error: newPointsError,
   } = useAsync(async () => {
     if (!address) return null;
     try {
@@ -70,9 +89,9 @@ export const useMetrics = (address?: string) => {
   }, [address]);
 
   const {
-    value: progresses
+    value: progresses,
     loading: isLoadingProgresses,
-    error,
+    error: progressesError,
   } = useAsync(async () => {
     if (!address) return null;
     try {
@@ -86,20 +105,46 @@ export const useMetrics = (address?: string) => {
   }, [address]);
 
   const {
-    value: loginDays
+    value: loginDays,
     loading: isLoadingLoginDays,
-    error,
+    error: loginDaysError,
   } = useAsync(async () => {
     if (!address) return null;
     try {
-      const response = await fetch(`${API_URL}/profile//${address}`);
-      const responseData = (await response.json()) as Points;
+      const response = await fetch(
+        `${API_URL}/profile/consecutive-login-days/${address}`
+      );
+      const responseData = (await response.json()) as LoginDays;
 
-      return { pointsResponseData };
+      return responseData;
     } catch (e) {
       throw e;
     }
   }, [address]);
 
-  return { metrics, isLoading, error };
+  const isLoading = useMemo(
+    () =>
+      isLoadingLoginDays ||
+      isLoadingNewPoints ||
+      isLoadingPoints ||
+      isLoadingProgresses,
+    [
+      isLoadingLoginDays,
+      isLoadingNewPoints,
+      isLoadingPoints,
+      isLoadingProgresses,
+    ]
+  );
+
+  return {
+    points,
+    pointsError,
+    progresses,
+    progressesError,
+    loginDays,
+    loginDaysError,
+    isLoading,
+    newPoints,
+    newPointsError
+  };
 };

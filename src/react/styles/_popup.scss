@@ -78,7 +78,7 @@ h6 {
 .toggle-switch {
   position: relative;
   display: inline-block;
-  width: 70px; /* Increased width for a larger toggle */
+  width: 60px; /* Increased width for a larger toggle */
   height: 30px; /* Increased height for a larger toggle */
 }
 
@@ -117,7 +117,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(22px); /* Adjusted to fit the new width */
+  transform: translateX(30px); /* Adjusted to fit the new width */
 }
 
 input:focus + .slider {
