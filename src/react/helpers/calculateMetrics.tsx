@@ -1,5 +1,5 @@
 import React from 'react';
-import { Metrics, useMetrics } from "../hooks/useMetrics";
+import { useMetrics } from "../hooks/useMetrics";
 import { Tooltip } from '../features/Dashboard/Tooltip';
 
 export const calculateMetrics = (metrics?: ReturnType<typeof useMetrics> | null) => {
@@ -136,8 +136,27 @@ export const calculateMetrics = (metrics?: ReturnType<typeof useMetrics> | null)
       },
       stats: [
         {
-          label: "TODO",
-          value: metrics?.points?.trade,
+          label: <><img src="/icons/x.svg" /></>,
+          value: `${(metrics?.points?.twitterCount ?? 0) > 0 ? '+' : ''}${metrics?.points?.twitterCount}`,
+          isSmall: true,
+          isPositive: (metrics?.points?.twitterCount ?? 0) > 0
+        },
+        {
+          label: <><img src="/icons/discord.svg" /></>,
+          value: `${(metrics?.points?.discordCount ?? 0) > 0 ? '+' : ''}${metrics?.points?.discordCount}`,
+          isSmall: true,
+          isPositive: (metrics?.points?.discordCount ?? 0) > 0
+        },
+        {
+          label: <><img src="/icons/telegram.svg" /></>,
+          value: `${(metrics?.points?.telegramCount ?? 0) > 0 ? '+' : ''}${metrics?.points?.telegramCount}`,
+          isSmall: true,
+          isPositive: (metrics?.points?.telegramCount ?? 0) > 0
+        },
+        {
+          label: <><img src="/icons/github.svg" /></>,
+          value: "Coming soon",
+          isSmall: true
         },
       ],
     },
