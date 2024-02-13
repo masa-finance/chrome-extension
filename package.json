@@ -16,7 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/chrome": "^0.0.254",
-    "@types/react": "^18.2.46",
+    "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.18",
     "copy-webpack-plugin": "^12.0.2",
     "eslint": "^8.56.0",
@@ -24,12 +24,12 @@
     "html-webpack-plugin": "^5.6.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
-    "webpack": "^5.90.0",
+    "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
-    "@babel/preset-env": "^7.23.7",
+    "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
     "@metamask/providers": "^14.0.2",
@@ -38,14 +38,14 @@
     "css-loader": "^6.9.1",
     "css-minimizer-webpack-plugin": "^6.0.0",
     "ethers": "^6.10.0",
-    "mini-css-extract-plugin": "^2.7.7",
+    "mini-css-extract-plugin": "^2.8.0",
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-jazzicon": "^1.0.4",
     "react-use": "^17.5.0",
     "sass": "^1.70.0",
-    "sass-loader": "^14.0.0",
+    "sass-loader": "^14.1.0",
     "web-ext": "^7.11.0"
   }
 }
