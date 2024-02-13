@@ -7,6 +7,8 @@ import { EnableTracking } from '../../components/EnableTracking';
 type Stat = {
   label: ReactNode,
   value: string,
+  isSmall?: boolean
+  isPositive?: boolean
 }
 
 type Link = {
@@ -89,9 +91,9 @@ export const StatCard = ({
       <section className='stats'>
         {stats.map(statData => {
           return (
-            <div className='stat'>
+            <div className={`stat ${statData.isSmall ? "small" : ""}`}>
               <h5 className='stat-label'>{statData.label}</h5>
-              <p className={`stat-value ${isComingSoon ? "coming-soon" : ""}`}>{statData.value}</p>
+              <p className={`stat-value ${statData.isSmall ? "small" : ""}  ${statData.isPositive ? "positive" : ""} ${isComingSoon ? "coming-soon" : ""}`}>{statData.value}</p>
             </div>
           )
         })}

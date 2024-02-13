@@ -55,7 +55,8 @@ export type Metrics = {
   average_progress: string | null;
 };
 
-export const useMetrics = (address?: string) => {
+export const useMetrics = () => {
+  const address = "0xd46e70e8d6Ab27C29391A5f7F449940E79997572";
   const {
     value: points,
     loading: isLoadingPoints,

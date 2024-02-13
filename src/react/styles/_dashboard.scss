@@ -72,7 +72,7 @@
     gap: var(--spacing-small);
 
     .sidebar-item-link {
-        text-decoration: none;;
+      text-decoration: none;
     }
 
     .sidebar-item {
@@ -201,7 +201,7 @@
   gap: var(--spacing-xlarge);
 
   @media (max-width: 1400px) {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -321,6 +321,21 @@
 }
 
 .stat {
+  &.small {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: var(--spacing-medium);
+
+    .stat-label {
+      img {
+        width: 30px;
+        height: 30px;
+        margin-left: var(--spacing-large);
+      }
+    }
+  }
   .stat-label {
     font-weight: var(--font-medium);
     font-size: var(--font-size-small);
@@ -331,6 +346,18 @@
     color: var(--color-font-lighter-gray);
     font-size: var(--font-size-xlarge);
     font-weight: var(--font-bold);
+
+    &.small {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: var(--color-font-light-gray);
+      font-size: var(--font-size-small);
+      padding: var(--spacing-small) var(--spacing-xlarge);
+      font-weight: 300;
+    }
+    &.positive {
+      color: var(--color-success);
+    }
 
     &.coming-soon {
       color: var(--color-text-disabled);
@@ -353,10 +380,10 @@
     z-index: 1;
 
     header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: var(--spacing-xsmall);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xsmall);
     }
 
     &-title {
@@ -367,35 +394,35 @@
     }
 
     &-description {
-        font-size: var(--font-size-xsmall);
-        line-height: 18px;
+      font-size: var(--font-size-xsmall);
+      line-height: 18px;
     }
 
     &-body {
-        margin-top: var(--spacing-small);
+      margin-top: var(--spacing-small);
 
-        p {
-            font-size: var(--font-size-xsmall);
-            line-height: 18px;
-            color: var(--color-font-light-gray);
-            margin-bottom: var(--spacing-medium);
-        }
+      p {
+        font-size: var(--font-size-xsmall);
+        line-height: 18px;
+        color: var(--color-font-light-gray);
+        margin-bottom: var(--spacing-medium);
+      }
 
-        h4 {
-            font-size: var(--font-size-xsmall);
-            line-height: 18px;
-        }
+      h4 {
+        font-size: var(--font-size-xsmall);
+        line-height: 18px;
+      }
     }
 
     &-points {
-        border-radius: var(--border-radius-xlarge);
-        color: var(--color-success);
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: var(--border-radius-xlarge);
-        padding-inline: var(--spacing-medium);
-        display: flex;
-        font-size: var(--font-size-smaller);
-        line-height: 20px;
+      border-radius: var(--border-radius-xlarge);
+      color: var(--color-success);
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius-xlarge);
+      padding-inline: var(--spacing-medium);
+      display: flex;
+      font-size: var(--font-size-smaller);
+      line-height: 20px;
     }
   }
 
@@ -499,74 +526,73 @@
   }
 }
 
-
 .tracking-toggle {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: var(--spacing-medium);
-    font-size: var(--font-size-small);
-    color: var(--color-font-light-gray);
-    display: flex;
-    gap: var(--spacing-medium);
-    align-items: center;
-    justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: var(--spacing-medium);
+  font-size: var(--font-size-small);
+  color: var(--color-font-light-gray);
+  display: flex;
+  gap: var(--spacing-medium);
+  align-items: center;
+  justify-content: space-between;
 }
 
-  .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 64px; /* Adjusted width for a smaller toggle */
-    height: 32px; /* Adjusted height for a smaller toggle */
-  }
-  
-  .toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #454545;
-    transition: .4s;
-    border-radius: 32px; /* Rounded corners for the slider */
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 28px; /* Adjusted for a smaller inner circle */
-    width: 28px; /* Adjusted for a smaller inner circle */
-    left: 2px; /* Positioning the inner circle inside the slider */
-    bottom: 2px; /* Positioning the inner circle inside the slider */
-    background-color: #252525;
-    transition: .4s;
-    border-radius: 50%; /* Circular shape for the inner circle */
-  }
-  
-  input:checked + .slider {
-      background-color: var(--color-success);
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(32px); /* Adjusted to fit the new width */
-  }
-  
-  input:focus + .slider {
-      box-shadow: 0 0 1px var(--color-success);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 64px; /* Adjusted width for a smaller toggle */
+  height: 32px; /* Adjusted height for a smaller toggle */
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #454545;
+  transition: 0.4s;
+  border-radius: 32px; /* Rounded corners for the slider */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 28px; /* Adjusted for a smaller inner circle */
+  width: 28px; /* Adjusted for a smaller inner circle */
+  left: 2px; /* Positioning the inner circle inside the slider */
+  bottom: 2px; /* Positioning the inner circle inside the slider */
+  background-color: #252525;
+  transition: 0.4s;
+  border-radius: 50%; /* Circular shape for the inner circle */
+}
+
+input:checked + .slider {
+  background-color: var(--color-success);
+}
+
+input:checked + .slider:before {
+  transform: translateX(32px); /* Adjusted to fit the new width */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-success);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
