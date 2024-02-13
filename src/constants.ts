@@ -1,1 +1,1 @@
-export const API_URL = "https://dev.api.cookiemonster.masa.finance";
+export const API_URL = "https://api.cookiemonster.masa.finance";
