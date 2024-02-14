@@ -7,12 +7,16 @@ import IntroPage from './IntroPage';
 
 export const Dashboard = () => {
   const { account, isLoading } = useDashboardContext()
-  
+
   return (
     <div className='dashboard'>
       <Sidebar />
-      {account && <Content />}
+      {account &&
+        <div className='content-wrapper'>
+          <Content />
+        </div>}
       {!isLoading && !account && (
+
         <div className='content'>
           <Header />
           <IntroPage />

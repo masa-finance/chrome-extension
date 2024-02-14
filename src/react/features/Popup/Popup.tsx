@@ -14,7 +14,7 @@ import { useMetamask } from '../../hooks/useMetamask';
 export const Popup = () => {
 
     const { account, isLoading: isMetamaskLoading } = useMetamask();
-    const metrics = useMetrics(account);
+    const metrics = useMetrics(account ?? "0x");
     const { isLoading, newPoints, points } = metrics
     const loading = isLoading || isMetamaskLoading;
 
@@ -66,8 +66,8 @@ export const Popup = () => {
 
                         </Row>
 
-                        <Column style={{ alignItems: 'flex-end', width: 190, gap: spacingSmall }}>
-                            {account && <p className='note-text' style={{ fontSize: 14 }}><span className={newPoints?.surfPoints ? "positive-value-text" : ""}>{newPoints?.surfPoints ? "+" : ""}{newPoints?.surfPoints ?? 0}</span> new points</p>}
+                        <Column style={{ alignItems: 'flex-end', width: 240, gap: spacingSmall }}>
+                            {account && <p className='note-text' style={{ fontSize: 14  }}><span className={newPoints?.surfPoints ? "positive-value-text" : ""}>{newPoints?.surfPoints ? "+" : ""}{newPoints?.surfPoints ?? 0}</span> new points</p>}
                             <Row style={{ width: '100%', justifyContent: 'flex-end' }}>
                                 {account && <EnableTracking />}
                             </Row>

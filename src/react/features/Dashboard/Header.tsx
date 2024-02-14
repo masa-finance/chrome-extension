@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../../components/Button';
 import { useDashboardContext } from '../../contexts/DashboardContextProvider';
 import { Row } from '../../components/Row';
+import { MetamaskAvatar } from '../../components/MetamaskAvatar';
 
 export const Header = () => {
 
@@ -15,7 +16,7 @@ export const Header = () => {
   return (
     <header className='dashboard-header'>
       <h1>Dashboard</h1>
-      {account && <Row className='account-container'><img src="/icons/wallet-connected.png" alt="wallet-connected" />{shortAccount}</Row>}
+      {account && <MetamaskAvatar />}
       {!account && <Button className='btn-connect' onClick={initiateConnection}>Connect wallet</Button>}
     </header>
   )
