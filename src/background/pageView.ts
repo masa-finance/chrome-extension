@@ -2,18 +2,25 @@
 
 import { postDataToServer } from './postData';
 
-export function sendPageView(url: string): void {
+export type pageViewDataType = {
+  url: string,
+  page_title?: string,
+  description?: string,
+  keywords?: string[]
+}
+
+export function sendPageView(data: pageViewDataType): void {
   chrome.storage.local.get(['trackingEnabled', 'userAddress'], (result) => {
     // Log the entire result object for debugging
-    console.log('Storage result:', result);
+    console.log('Storage result:', result); 
 
     // Explicitly log the trackingEnabled and userAddress values
     console.log('Tracking enabled:', result.trackingEnabled);
     console.log('User address from storage:', result.userAddress);
 
     if (result.trackingEnabled) {
-      const pageView = { url };
-      console.log('Sending page view for URL:', url);
+      const pageView = data;
+      console.log('Sending page view for URL:', data.url);
 
       // Check if userAddress is not undefined before sending
       if (result.userAddress) {

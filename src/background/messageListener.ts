@@ -7,7 +7,7 @@ export function messageListener(): void {
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'urlChange') {
       console.log('URL changed to:', message.url);
-      sendPageView(message.url);
+      sendPageView(message);
     } else if (message.type === 'onClick') {
       console.log('Click event detected:', message.clickData);
       sendClickEventData(message.clickData);
