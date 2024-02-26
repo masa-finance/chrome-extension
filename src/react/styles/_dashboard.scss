@@ -5,11 +5,18 @@
   flex-direction: row;
   min-height: 100vh;
 
-  .content {
+  .content-wrapper {
     width: 100%;
-    padding: var(--spacing-large) var(--spacing-3xlarge);
-  }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
+    .content {
+      width: 100%;
+      max-width: 1480px;
+      padding: var(--spacing-large) var(--spacing-3xlarge);
+    }
+  }
   .dashboard-header {
     padding-left: var(--spacing-xlarge);
     margin-bottom: var(--spacing-4xlarge);
@@ -19,6 +26,23 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    .metamask-account {
+      background-color: var(--color-card-background);
+      padding: var(--spacing-small) var(--spacing-xlarge);
+      border-radius: 50px;
+
+      p:first-of-type {
+        font-weight: bold;
+        font-size: 14;
+      }
+
+      p:nth-of-type(2) {
+        font-weight: normal;
+        font-size: 12;
+        color: var(--color-font-light-gray);
+      }
+    }
   }
 }
 
