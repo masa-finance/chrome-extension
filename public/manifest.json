@@ -1,6 +1,6 @@
 {
   "name": "Masa: Surf-to-Earn",
-  "description": "The Masa Chrome Extension allows users to earn data points by opting-in to securely track the domains they visit while browsing the web; surf-to-earn. The collected data points can be redeemed for rewards in the Masa ecosystem. No personal data is collected or stored.",
+  "description": "Earn data points by opting-in to securely track visited domains. Redeem for rewards. No personal data collected.",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [
